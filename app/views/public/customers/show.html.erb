@@ -1,0 +1,17 @@
+<h1>マイページ</h1>
+
+<P>氏名</P>
+<%= @customer.last_name %>
+<%= @customer.first_name %>
+
+<p>フリガナ</p>
+<%= @customer.last_name_kana %>
+<%= @customer.first_name_kana %>
+
+<p>ユーザー名</p>
+<%= @customer.user_name %>
+
+<p>メールアドレス</p>
+<%= @customer.email %>
+
+<%= link_to "編集する", customers_information_edit_path %>
