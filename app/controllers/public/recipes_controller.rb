@@ -9,12 +9,14 @@ class Public::RecipesController < ApplicationController
   end
 
   def create
-    recipe = Recipe.new(recipe_params)
-    recipe.save
-    redirect_to '/recipes'
+    @recipe = Recipe.new(recipe_params)
+    @recipe.customer_id = current_customer.id
+    @recipe.save
+    redirect_to recipe_path(@recipe)
   end
 
   def show
+    @recipe = Recipe.find(params[:id])
   end
 
   private
