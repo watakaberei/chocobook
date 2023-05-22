@@ -11,6 +11,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
       t.string :first_name, null: false
       t.string :last_name_kana, null: false
       t.string :first_name_kana, null: false
+      t.string :user_name, null: false
       t.boolean :is_deleted, default: false, null: false
       ## Recoverable
       t.string   :reset_password_token
