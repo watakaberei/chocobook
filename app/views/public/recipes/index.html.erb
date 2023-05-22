@@ -1,1 +1,10 @@
 <h1>レシピ一覧</h1>
+
+<% @recipes.each do |recipe| %>
+
+<p>画像</p>
+<%= image_tag recipe.image, size: "200x200" %>
+<div>
+<%= recipe.name %>
+</div>
+<% end %>

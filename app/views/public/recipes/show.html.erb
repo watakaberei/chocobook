@@ -1,0 +1,19 @@
+<h1>レシピ詳細</h1>
+
+<p>画像</p>
+<%= image_tag @recipe.image, size: "240x200" %>
+
+<p>レシピ名</p>
+<%= @recipe.name %>
+
+<p>紹介文</p>
+<%= @recipe.introduction %>
+
+<p>材料・分量</p>
+<%= @recipe.material %>
+
+<p>調理時間</p>
+<%= @recipe.cooktime %>
+
+<p>調理手順</p>
+<%= @recipe.procedure %>

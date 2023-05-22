@@ -1,1 +1,30 @@
 <h1>レシピ投稿</h1>
+
+<%= form_with model: Recipe.new do |f| %>
+
+  <p>画像</p>
+  <%= f.file_field :image, accept: "image/*" %>
+  
+  <p>レシピ名</p>
+  <%= f.text_field :name %>
+
+  <p>紹介文</p>
+  <%= f.text_area :introduction %>
+  
+  <p>材料・分量</p>
+  <%= f.text_field :material %>
+  
+  <p>調理時間</p>
+  <%= f.text_field :cooktime %>
+  
+  <p>調理手順</p>
+  <%= f.text_area :procedure, size: "40x20" %>
+  
+  <p>カテゴリー</p>
+  <%= f.collection_select(:category_id, Category.all, :id, :name) %>
+
+  <div>
+  <%= f.submit '投稿' %>
+  </div>
+<% end %>
+
