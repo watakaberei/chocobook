@@ -4,6 +4,10 @@ class Public::RecipesController < ApplicationController
     @recipes = Recipe.all
   end
 
+  def search
+    @recipes = Recipe.all.search(params[:keyword])
+  end
+
   def new
     @recipe = Recipe.new
   end
