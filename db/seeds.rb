@@ -29,3 +29,7 @@ Category.create!(
 Category.create!(
    name: "その他",
 )
+
+Admin.create!(
+   email: "email@email", password: "password"
+)
