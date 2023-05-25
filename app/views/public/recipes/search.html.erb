@@ -1,0 +1,9 @@
+ <% if @recipes.exists? %>
+    <% @recipes.each do |recipe| %>
+     <%= image_tag recipe.image, size: "250x200" %>
+     <%= recipe.name %>
+     <%= recipe.introduction %>
+    <% end %>
+　<% else %>
+  　　<p>該当する記事は見つかりませんでした。</p>
+　<% end %>
