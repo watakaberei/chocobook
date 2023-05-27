@@ -1,0 +1,8 @@
+<h1>カテゴリレシピ一覧</h1>
+
+<% @category.recipes.each do |recipe| %>
+    <%= recipe.name %>
+    <% recipe.categories.each do |category| %>
+       <%= category.name %>
+    <% end %>
+<% end %>
