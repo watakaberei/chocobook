@@ -18,4 +18,10 @@
 <p>調理手順</p>
 <%= @recipe.procedure %>
 
+<% @recipe.categories.each do |category| %>
+    <%= category.name %>
+<% end %>
+
+<% if customer_signed_in? && current_customer.id == @recipe.customer_id %>
 <%= link_to "編集する", edit_recipe_path(@recipe) %>
+<% end %>

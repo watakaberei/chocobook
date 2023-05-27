@@ -1,0 +1,14 @@
+<h1>ここはTOPページです</h1>
+
+<%= link_to "チョコレートについて", about_path %>
+<%= link_to "レシピ一覧", recipes_path %>
+
+
+<%= form_tag recipes_path, method: :get, class: 'boards__searchForm' do %>
+
+  <% @categories.each do |category| %>
+      <div class="tag-box">
+        <%= link_to category.name, category_path(category) %>
+      </div>
+  <% end %>
+<% end %>

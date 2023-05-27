@@ -4,24 +4,33 @@
 
   <p>画像</p>
   <%= f.file_field :image, accept: "image/*" %>
-  
+
   <p>レシピ名</p>
   <%= f.text_field :name %>
 
   <p>紹介文</p>
   <%= f.text_area :introduction %>
-  
+
   <p>材料・分量</p>
   <%= f.text_field :material %>
-  
+
   <p>調理時間</p>
   <%= f.text_field :cooktime %>
-  
+
   <p>調理手順</p>
   <%= f.text_area :procedure, size: "40x20" %>
-  
+
   <p>カテゴリー</p>
-  <%= f.collection_select(:category_id, Category.all, :id, :name) %>
+  <div class="check_box">
+    <%= f.collection_select(:category_id, Category.all, :id, :name) do |category| %>
+      <div class='form-check'>
+     　 <%= category.label do %>
+      　  <%= category.check_box %>
+      　  <%= category.text %>
+      　<% end %>
+      </div>
+    <% end %>
+  </div>
 
   <div>
   <%= f.submit '投稿' %>
