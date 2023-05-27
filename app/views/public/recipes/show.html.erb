@@ -22,6 +22,20 @@
     <%= category.name %>
 <% end %>
 
+<% if @recipe.recipe_bookmarked_by?(current_customer) %>
+  <p>
+    <%= link_to recipe_recipe_bookmarks_path(@recipe), method: :delete do %>
+      ♥<%= @recipe.recipe_bookmarks.count %> いいね
+    <% end %>
+  </p>
+  <% else %>
+  <p>
+    <%= link_to recipe_recipe_bookmarks_path(@recipe), method: :post do %>
+      ♡<%= @recipe.recipe_bookmarks.count %> いいね
+    <% end %>
+  </p>
+<% end %>
+
 <% if customer_signed_in? && current_customer.id == @recipe.customer_id %>
 <%= link_to "編集する", edit_recipe_path(@recipe) %>
 <% end %>
