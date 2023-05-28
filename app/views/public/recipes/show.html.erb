@@ -36,6 +36,24 @@
   </p>
 <% end %>
 
+
+<div>
+  <p>コメント件数：<%= @recipe.recipe_comments.count %></p>
+  <% @recipe.recipe_comments.each do |recipe_comment| %>
+    <%= recipe_comment.customer.name %>
+    <%= recipe_comment.created_at.strftime('%Y/%m/%d') %><%= recipe_comment.comment %>
+    <% if recipe_comment.customer == current_customer %>
+      <%= link_to "削除", recipe_recipe_comment_path(recipe_comment.recipe, post_comment), method: :delete %>
+    <% end %>
+  <% end %>
+</div>
+<div>
+  <%= form_with model: [@recipe, @recipe_comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>
+
 <% if customer_signed_in? && current_customer.id == @recipe.customer_id %>
 <%= link_to "編集する", edit_recipe_path(@recipe) %>
 <% end %>
