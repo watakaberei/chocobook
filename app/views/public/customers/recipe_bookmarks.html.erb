@@ -1,0 +1,9 @@
+<h1>いいね一覧</h1>
+<% @recipe_bookmark_recipes.each do |recipe|%>
+
+<div>
+<%= recipe.customer.user_name %>
+<%= recipe.name %>
+<%= link_to "詳細", recipe_path(recipe) %>
+</div>
+<% end %>
