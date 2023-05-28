@@ -15,7 +15,24 @@ class Public::CustomersController < ApplicationController
     end
   end
 
+  def unsubscribe
+  end
+
+  def withdraw
+    @customer = current_customer
+    @customer.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
+  end
+  
+  def recipe_bookmarks
+    @customer = Customer.find(params[:id])
+    recipe_bookmarks = RecipeBookmark.where(customer_id: @customer.id).pluck(:recipe_id)
+    @recipe_bookmark_recipes = Recipe.find(recipe_bookmarks)
+  end
+
   private
+  
   # ストロングパラメータ
   def customer_params
     params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :user_name, :email, :encrypted_password)
