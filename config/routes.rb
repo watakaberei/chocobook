@@ -25,6 +25,7 @@ devise_for :customers,skip: [:passwords], controllers: {
     end
     
     resources :recipes, only: [:new, :index, :create, :show, :edit, :update, :destroy] do
+      resources :recipe_comments, only: [:create, :destroy]
       resource :recipe_bookmarks, only: [:create, :destroy]
       get :recipe_bookmarks
     end
