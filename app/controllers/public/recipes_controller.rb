@@ -16,12 +16,16 @@ class Public::RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.customer_id = current_customer.id
-    @recipe.save
-    redirect_to recipe_path(@recipe)
+    if @recipe.save
+      redirect_to recipe_path(@recipe)
+    else
+      render :new
+    end
   end
 
   def show
     @recipe = Recipe.find(params[:id])
+    @recipe_comment = RecipeComment.new
   end
 
   def edit
@@ -39,10 +43,10 @@ class Public::RecipesController < ApplicationController
     recipe.destroy
     redirect_to root_path
   end
-
+  
   private
   # ストロングパラメータ
   def recipe_params
-    params.require(:recipe).permit(:customer_id, :category_id, :name, :introduction, :cooktime, :image, :material, :quantity, :procedure)
+    params.require(:recipe).permit(:customer_id, :name, :introduction, :cooktime, :image, :material, :procedure, category_ids:[] )
   end
 end
