@@ -1,14 +1,39 @@
-<h1>ここはTOPページです</h1>
+<div class="container">
+  <div class="row justify-content-center mt-4">
+    <div class="col text-center">
+      <%= link_to "チョコレートについて", about_path %>
+    </div>
+    <div class="col text-center">
+      <%= link_to "レシピ一覧", recipes_path %>
+    </div>
+  </div>
+</div>
 
-<%= link_to "チョコレートについて", about_path %>
-<%= link_to "レシピ一覧", recipes_path %>
+<div class="jumbotron" style="background-image: url(<%= image_url 'チョコレート背景.jpg' %>);">
+  <div class="container">
+    <h1 class="display-5">Welcome to Chocobook</h1>
+    <p class="lead">
+    <strong>本サイトはチョコレート専用のレシピサイトとなっております。<br />
+    レシピの閲覧は会員不要でもご覧になれますが、<br />
+    会員登録していただけますと投稿やコメントをすることが出来るようになります。
+    </strong>
+    </p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <h3>Category</h3>
+      <%= form_tag recipes_path, method: :get, class: 'boards__searchForm' do %>
+        <% @categories.each do |category| %>
+            <div class="tag-box mb-4" class: "text-secondary">
+              <%= link_to category.name, category_path(category) %>
+            </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
 
-<%= form_tag recipes_path, method: :get, class: 'boards__searchForm' do %>
-
-  <% @categories.each do |category| %>
-      <div class="tag-box">
-        <%= link_to category.name, category_path(category) %>
-      </div>
-  <% end %>
-<% end %>
