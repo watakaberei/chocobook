@@ -15,9 +15,9 @@ class Public::RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.customer_id = current_customer.id
     #投稿ボタンを押した場合
-    if params[:recipe]
-      @recipe.customer_id = current_customer.id
+    if params["公開"]
       if @recipe.save(context: :publicize)
         redirect_to recipe_path(@recipe)
       else
@@ -42,7 +42,7 @@ class Public::RecipesController < ApplicationController
   def edit
     @recipe = Recipe.find(params[:id])
   end
-
+  
   def update
     @recipe = Recipe.find(params[:id])
     # ①下書きレシピの更新（公開）の場合
@@ -86,9 +86,9 @@ class Public::RecipesController < ApplicationController
     params.require(:recipe).permit(
       :customer_id,
       :name,
+      :image,
       :introduction,
       :cooktime,
-      :image,
       :material,
       :procedure,
       :is_draft,
