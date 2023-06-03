@@ -1,0 +1,10 @@
+<h1>下書き一覧</h1>
+
+<% @recipes.each do |recipe| %>
+
+<%= image_tag recipe.image, size: "250x200" %>
+<div>
+<%= link_to recipe.name, edit_recipe_path(recipe) %>
+</div>
+
+<% end %>
