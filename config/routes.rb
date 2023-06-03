@@ -17,7 +17,7 @@ devise_for :customers,skip: [:passwords], controllers: {
     patch '/customers/information/edit' => 'customers#update'
     get '/customers/unsubscribe' => 'customers#unsubscribe'
     patch '/customers/withdraw' => 'customers#withdraw'
-    
+
     resources :customers do
       member do
         get :recipe_bookmarks
@@ -29,7 +29,9 @@ devise_for :customers,skip: [:passwords], controllers: {
       resource :recipe_bookmarks, only: [:create, :destroy]
       get :recipe_bookmarks
     end
+    get '/draft' => 'recipes#draft'
     get '/search' => 'recipes#search'
+    
 
     resources :categories, only: [:show]
   end
