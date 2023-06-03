@@ -1,7 +1,7 @@
 class Public::RecipesController < ApplicationController
 
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.where(is_draft: false)
   end
 
   def search
@@ -17,7 +17,7 @@ class Public::RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.customer_id = current_customer.id
     #投稿ボタンを押した場合
-    if params["公開"]
+    if params["公開"] == "レシピを公開"
       if @recipe.save(context: :publicize)
         redirect_to recipe_path(@recipe)
       else
@@ -26,12 +26,17 @@ class Public::RecipesController < ApplicationController
 
   #下書きボタンを押した場合
     else
-      if @recipe.update(is_draft: true)
-        redirect_to customer_path(current_customer), notice: "レシピを下書き保存しました！"
+      if @recipe.save
+        @recipe.update(is_draft: true)
+        redirect_to draft_path, notice: "レシピを下書き保存しました！"
       else
         render :new, alert: "登録できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
       end
     end
+  end
+
+  def draft
+    @recipes = Recipe.where(is_draft: true)
   end
 
   def show
@@ -42,7 +47,7 @@ class Public::RecipesController < ApplicationController
   def edit
     @recipe = Recipe.find(params[:id])
   end
-  
+
   def update
     @recipe = Recipe.find(params[:id])
     # ①下書きレシピの更新（公開）の場合
