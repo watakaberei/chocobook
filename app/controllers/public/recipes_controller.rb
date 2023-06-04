@@ -3,6 +3,10 @@ class Public::RecipesController < ApplicationController
   def index
     @recipes = Recipe.where(is_draft: false)
   end
+  
+  def rank
+    @recipes = Recipe.find(RecipeBookmark.group(:recipe_id).order('count(recipe_id) DESC').limit(5).pluck(:recipe_id))  
+  end
 
   def search
     @recipes = Recipe.all
