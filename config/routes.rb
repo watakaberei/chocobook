@@ -21,9 +21,9 @@ devise_for :customers,skip: [:passwords], controllers: {
     resources :customers do
       member do
         get :recipe_bookmarks
-      end 
+      end
     end
-    
+
     resources :recipes, only: [:new, :index, :create, :show, :edit, :update, :destroy] do
       resources :recipe_comments, only: [:create, :destroy]
       resource :recipe_bookmarks, only: [:create, :destroy]
@@ -32,7 +32,7 @@ devise_for :customers,skip: [:passwords], controllers: {
     get '/draft' => 'recipes#draft'
     get '/rank' => 'recipes#rank'
     get '/search' => 'recipes#search'
-    
+
 
     resources :categories, only: [:show]
   end
@@ -45,6 +45,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
   namespace :admin do
     root to: 'homes#top'
+    resources :customers, only: [:show, :edit, :update]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
