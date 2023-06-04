@@ -30,6 +30,7 @@ devise_for :customers,skip: [:passwords], controllers: {
       get :recipe_bookmarks
     end
     get '/draft' => 'recipes#draft'
+    get '/rank' => 'recipes#rank'
     get '/search' => 'recipes#search'
     
 
