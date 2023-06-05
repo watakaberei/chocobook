@@ -1,0 +1,18 @@
+<h1>会員が投稿したレシピ一覧</h1>
+
+<% @recipes.each do |recipe| %>
+
+<p>レシピID</p>
+<%= recipe.id %>
+
+<p>名前</p>
+<%= recipe.customer.last_name %>
+<%= recipe.customer.first_name %>
+
+<p>ユーザー名</p>
+<%= recipe.customer.user_name %>
+
+<p>商品名</p>
+<%= link_to recipe.name, admin_recipe_path(recipe) %>
+
+<% end %>
