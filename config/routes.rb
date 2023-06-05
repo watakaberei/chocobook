@@ -46,8 +46,12 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   namespace :admin do
     root to: 'homes#top'
     resources :customers, only: [:show, :edit, :update]
+    
+    resources :recipes
 
     resources :categories
+
+    resources :recipe_comments, only: [:index, :destroy]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
