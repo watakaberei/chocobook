@@ -1,0 +1,12 @@
+<h1>コメント一覧</h1>
+
+<% @recipe_comments.each do |recipe_comment| %>
+
+<div>
+  <%= recipe_comment.id %>
+  <%= recipe_comment.customer.last_name %><%= recipe_comment.customer.first_name %>
+  <%= recipe_comment.customer.user_name %>
+  <%= recipe_comment.recipe.name %>
+  <%= recipe_comment.comment %>
+</div>
+<% end %>
