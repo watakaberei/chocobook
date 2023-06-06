@@ -1,11 +1,11 @@
 class Public::RecipesController < ApplicationController
 
   def index
-    @recipes = Recipe.where(is_draft: false)
+    @recipes = Recipe.where(is_draft: false).page(params[:page]).per(5)
   end
-  
+
   def rank
-    @recipes = Recipe.find(RecipeBookmark.group(:recipe_id).order('count(recipe_id) DESC').limit(5).pluck(:recipe_id))  
+    @recipes = Recipe.find(RecipeBookmark.group(:recipe_id).order('count(recipe_id) DESC').limit(5).pluck(:recipe_id))
   end
 
   def search
@@ -41,6 +41,10 @@ class Public::RecipesController < ApplicationController
 
   def draft
     @recipes = Recipe.where(is_draft: true)
+  end
+  
+  def history
+    @recipes = current_customer.recipes.order(created_at: :desc)
   end
 
   def show
