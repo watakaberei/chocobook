@@ -1,25 +1,18 @@
-<h1>会員一覧</h1>
+<h1>会員が投稿したレシピ一覧</h1>
 
-<% @customers.each do |customer| %>
+<% @recipes.each do |recipe| %>
 
-<p>会員ID</p>
-<%= customer.id %>
+<p>レシピID</p>
+<%= recipe.id %>
 
-<p>氏名</p>
-<%= customer.last_name %>
-<%= customer.first_name %>
+<p>名前</p>
+<%= recipe.customer.last_name %>
+<%= recipe.customer.first_name %>
 
 <p>ユーザー名</p>
-<%= customer.user_name %>
+<%= recipe.customer.user_name %>
 
-<p>メールアドレス</p>
-<%= customer.email %>
-
-<p>会員ステータス</p>
-<% if customer.is_deleted == false %>
-有効
-<% else %>
-退会済み
-<% end %>
+<p>商品名</p>
+<%= link_to recipe.name, admin_recipe_path(recipe) %>
 
 <% end %>
