@@ -8,5 +8,6 @@
   <%= recipe_comment.customer.user_name %>
   <%= recipe_comment.recipe.name %>
   <%= recipe_comment.comment %>
+  <%= link_to "詳細", admin_recipe_path(recipe_comment.recipe_id) %>
 </div>
 <% end %>
