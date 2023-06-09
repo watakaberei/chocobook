@@ -1,4 +1,5 @@
 class Public::RecipesController < ApplicationController
+  before_action :is_matching_login_customer, only: [:edit, :update]
 
   def index
     @recipes = Recipe.where(is_draft: false).page(params[:page]).per(5)
@@ -42,7 +43,7 @@ class Public::RecipesController < ApplicationController
   def draft
     @recipes = Recipe.where(is_draft: true)
   end
-  
+
   def history
     @recipes = current_customer.recipes.order(created_at: :desc)
   end
@@ -108,5 +109,11 @@ class Public::RecipesController < ApplicationController
       category_ids:[]
     )
   end
-end
 
+  def is_matching_login_customer
+    recipe = Recipe.find(params[:id])
+    unless recipe.customer_id == current_customer.id
+      redirect_to root_path
+    end
+  end
+end
