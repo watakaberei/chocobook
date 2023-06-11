@@ -1,3 +1,47 @@
+<div class="container">
+  <div class="row mt-3">
+    <div class="col text-center">
+      <h3>マイページ</h3>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-3">
+    <div class="mx-auto col-lg-5">
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <th>氏名</th>
+            <td>
+              <%= @customer.last_name %>
+              <%= @customer.first_name %>
+            </td>
+          </tr>
+          <tr>
+            <th>フリガナ</th>
+            <td>
+              <%= @customer.last_name_kana %>
+              <%= @customer.first_name_kana %>
+            </td>
+          </tr>
+          <tr>
+            <th>ユーザー名</th>
+            <td>
+              <%= @customer.user_name %>
+            </td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td>
+              <%= @customer.email %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
 <h1>マイページ</h1>
 
 <P>氏名</P>
@@ -21,3 +65,7 @@
 <diV>
   <%= link_to "退会する", customers_unsubscribe_path %>
 </diV>
+
+<p><%= link_to "いいね一覧", recipe_bookmarks_customer_path(@customer) %></p>
+
+<p><%= link_to "下書き一覧", draft_path %></p>
