@@ -26,6 +26,8 @@ class Recipe < ApplicationRecord
 
 
  def recipe_bookmarked_by?(customer)
+   return false unless customer.present?
    recipe_bookmarks.where(customer_id: customer.id).exists?
  end
 end
+
