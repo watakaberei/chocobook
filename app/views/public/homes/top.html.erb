@@ -1,37 +1,32 @@
 <div class="container">
-  <div class="row justify-content-center mt-4">
-    <div class="col text-center">
+  <div class="row justify-content-center">
+    <div class="col text-center mt-4 mb-4">
       <%= link_to "チョコレートについて", about_path %>
     </div>
-    <div class="col text-center">
+    <div class="col text-center mt-4 mb-4">
       <%= link_to "レシピ一覧", recipes_path %>
     </div>
   </div>
 </div>
 
-<div class="jumbotron" style="background-image: url(<%= image_url 'チョコレート背景.jpg' %>);">
+<div class="jumbotron" style="background-image: url(<%= image_url 'チョコレート背景.jpg' %>); background-size: cover; height: 300px">
   <div class="container">
-    <h1 class="display-5">Welcome to Chocobook</h1>
-    <p class="lead">
-    <strong>本サイトはチョコレート専用のレシピサイトとなっております。<br />
-    レシピの閲覧は会員不要でもご覧になれますが、<br />
-    会員登録していただけますと投稿やコメントをすることが出来るようになります。
-    </strong>
-    </p>
+    <h1 class="display-5 mt-5">Welcome to Chocobook</h1>
   </div>
 </div>
 
 <div class="container">
   <div class="row">
+    <div class="col">
+      <h6>本サイトはチョコレート専門のレシピ投稿サイトとなっております。
+          閲覧は登録不要で可能ですが、<br />
+          会員登録していただきますと、レシピ投稿やコメントをすることが出来ます。
+      </h6>
+    </div>
+  </div>
+  <div class="row mt-3">
     <div class="col-lg-3">
-      <h3>Category</h3>
-      <%= form_tag recipes_path, method: :get, class: 'boards__searchForm' do %>
-        <% @categories.each do |category| %>
-            <div class="tag-box mb-4" class: "text-secondary">
-              <%= link_to category.name, category_path(category) %>
-            </div>
-        <% end %>
-      <% end %>
+        <%= render 'public/categories/sidebar', categories: @categories %>
     </div>
   </div>
 </div>
