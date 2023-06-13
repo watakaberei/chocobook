@@ -1,9 +1,40 @@
-<h1>レシピ一覧</h1>
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h2>レシピ一覧</h2>
+    </div>
+  </div>
 
-<% @recipes.each do |recipe| %>
+  <div class="row mt-5">
+    
+    <div class="col-lg-3">
+      <h3>Category</h3>
+      <%= form_tag recipes_path, method: :get, class: 'boards__searchForm' do %>
+        <% @categories.each do |category| %>
+            <div class="tag-box mb-4" class: "text-secondary">
+              <%= link_to category.name, category_path(category) %>
+            </div>
+        <% end %>
+      <% end %>      
+    </div>
+    
+    <div class="col-lg-9">
+      <div class="row">
+        <% @recipes.each do |recipe| %>
+          <div class="col-lg-4 mb-4">
+            <%= image_tag recipe.image, size: "250x200" %>
+            <div class="text-center">
+              <%= link_to recipe.name, recipe_path(recipe) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>    
+  </div>
 
-<%= image_tag recipe.image, size: "250x200" %>
-<div>
-<%= link_to recipe.name, recipe_path(recipe) %>
+  <div class="row mt-5">
+    <div class="mx-auto">
+      <%= paginate @recipes %>
+    </div>
+  </div>
 </div>
-<% end %>
