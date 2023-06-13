@@ -1,13 +1,28 @@
-<h1>ランキング</h1>
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h2>ランキング発表</h2>
+    </div>
+  </div>
 
-<% @recipes.each.with_index(1) do |recipe, i| %>
+  <div class="row mt-5">
 
-<div class="recipe-info"><i class="fas fa-crown"></i> 第<%= i %>位</div>
+    <div class="col-lg-3">
+      <%= render 'public/categories/sidebar', categories: @categories %>
+    </div>
 
-<%= image_tag recipe.image, size: "250x200" %>
-<div>
-<%= link_to recipe.name, recipe_path(recipe) %>
+    <div class="col-lg-9">
+      <div class="row">
+        <% @recipes.each.with_index(1) do |recipe, i| %>
+          <div class="col-lg-4 mb-4">
+            <div class="recipe-info"><i class="fas fa-crown"></i> 第<%= i %>位</div>
+            <%= image_tag recipe.image, size: "250x200" %>
+            <div class="text-center">
+              <%= link_to recipe.name, recipe_path(recipe) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
-
-  <p><%= link_to "#{recipe.recipe_comments.count} コメント", recipe_path(recipe.id) %></p>
-<% end %>
