@@ -1,1 +1,22 @@
 @use '~bootstrap/scss/bootstrap';
+
+@import '~bootstrap/scss/bootstrap';
+
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+
+@import url('https://fonts.googleapis.com/css2?family=Kaisei+HarunoUmi:wght@500&display=swap');
+
+header {
+  background-color: #f5f5f5;
+  font-family: 'Kaisei HarunoUmi', serif;
+}
+
+main {
+  background-color: #f5deb3;
+  font-family: 'Kaisei HarunoUmi', serif;
+  font-size: 20px;
+}
+
+a {
+  color: #C71585; /* 任意の文字色を指定 */
+}
