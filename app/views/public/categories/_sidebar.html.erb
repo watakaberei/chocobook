@@ -1,0 +1,8 @@
+<h3>Category</h3>
+<%= form_tag recipes_path, method: :get, class: 'boards__searchForm' do %>
+  <% categories.each do |category| %>
+      <div class="tag-box mb-4" class: "text-secondary">
+        <%= link_to category.name, category_path(category) %>
+      </div>
+  <% end %>
+<% end %>
