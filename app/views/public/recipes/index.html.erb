@@ -6,18 +6,11 @@
   </div>
 
   <div class="row mt-5">
-    
+
     <div class="col-lg-3">
-      <h3>Category</h3>
-      <%= form_tag recipes_path, method: :get, class: 'boards__searchForm' do %>
-        <% @categories.each do |category| %>
-            <div class="tag-box mb-4" class: "text-secondary">
-              <%= link_to category.name, category_path(category) %>
-            </div>
-        <% end %>
-      <% end %>      
+      <%= render 'public/categories/sidebar', categories: @categories %>
     </div>
-    
+
     <div class="col-lg-9">
       <div class="row">
         <% @recipes.each do |recipe| %>
@@ -29,7 +22,7 @@
           </div>
         <% end %>
       </div>
-    </div>    
+    </div>
   </div>
 
   <div class="row mt-5">
