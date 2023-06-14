@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_25_142704) do
+ActiveRecord::Schema.define(version: 2023_06_14_123908) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -76,6 +76,19 @@ ActiveRecord::Schema.define(version: 2023_05_25_142704) do
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
+  create_table "materials", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "amount", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "procedures", force: :cascade do |t|
+    t.string "body", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "recipe_bookmarks", force: :cascade do |t|
     t.string "customer_id"
     t.string "recipe_id"
@@ -95,7 +108,7 @@ ActiveRecord::Schema.define(version: 2023_05_25_142704) do
   create_table "recipe_comments", force: :cascade do |t|
     t.string "customer_id"
     t.string "recipe_id"
-    t.string "text"
+    t.text "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -105,8 +118,7 @@ ActiveRecord::Schema.define(version: 2023_05_25_142704) do
     t.string "name", null: false
     t.string "introduction", null: false
     t.integer "cooktime", null: false
-    t.string "material", null: false
-    t.text "procedure", null: false
+    t.boolean "is_draft", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
