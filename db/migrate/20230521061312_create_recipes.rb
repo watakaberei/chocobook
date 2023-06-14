@@ -5,8 +5,7 @@ class CreateRecipes < ActiveRecord::Migration[6.1]
       t.string :name, null: false
       t.string :introduction, null: false
       t.integer :cooktime, null: false
-      t.string :material, null: false
-      t.text :procedure, null: false
+      t.boolean :is_draft, default: false, null: false
       t.timestamps
     end
   end

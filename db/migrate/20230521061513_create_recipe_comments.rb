@@ -3,7 +3,7 @@ class CreateRecipeComments < ActiveRecord::Migration[6.1]
     create_table :recipe_comments do |t|
       t.string :customer_id
       t.string :recipe_id
-      t.string :text
+      t.text :comment
       t.timestamps
     end
   end
