@@ -3,19 +3,24 @@ class Public::RecipesController < ApplicationController
 
   def index
     @recipes = Recipe.where(is_draft: false).page(params[:page]).per(5)
+    @categories = Category.all
   end
 
   def rank
     @recipes = Recipe.find(RecipeBookmark.group(:recipe_id).order('count(recipe_id) DESC').limit(5).pluck(:recipe_id))
+    @categories = Category.all
   end
 
   def search
     @recipes = Recipe.all
     @recipes = Recipe.all.search(params[:keyword])
+    @categories = Category.all
   end
 
   def new
     @recipe = Recipe.new
+    @recipe.materials.build
+    @recipe.procedures.build
   end
 
   def create
@@ -50,6 +55,7 @@ class Public::RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    flash[:notice] = "詳細ページ"
     @recipe_comment = RecipeComment.new
   end
 
@@ -103,9 +109,9 @@ class Public::RecipesController < ApplicationController
       :image,
       :introduction,
       :cooktime,
-      :material,
-      :procedure,
       :is_draft,
+      procedures_attributes: [:body, :_destroy],
+      materials_attributes: [:name, :amount, :_destroy],
       category_ids:[]
     )
   end
