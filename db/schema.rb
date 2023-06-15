@@ -79,19 +79,23 @@ ActiveRecord::Schema.define(version: 2023_06_14_123908) do
   create_table "materials", force: :cascade do |t|
     t.string "name", null: false
     t.integer "amount", null: false
+    t.integer "recipe_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipe_id"], name: "index_materials_on_recipe_id"
   end
 
   create_table "procedures", force: :cascade do |t|
     t.string "body", null: false
+    t.integer "recipe_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["recipe_id"], name: "index_procedures_on_recipe_id"
   end
 
   create_table "recipe_bookmarks", force: :cascade do |t|
-    t.string "customer_id"
-    t.string "recipe_id"
+    t.integer "customer_id"
+    t.integer "recipe_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -106,8 +110,8 @@ ActiveRecord::Schema.define(version: 2023_06_14_123908) do
   end
 
   create_table "recipe_comments", force: :cascade do |t|
-    t.string "customer_id"
-    t.string "recipe_id"
+    t.integer "customer_id"
+    t.integer "recipe_id"
     t.text "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -125,6 +129,8 @@ ActiveRecord::Schema.define(version: 2023_06_14_123908) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "materials", "recipes"
+  add_foreign_key "procedures", "recipes"
   add_foreign_key "recipe_categories", "categories"
   add_foreign_key "recipe_categories", "recipes"
 end
