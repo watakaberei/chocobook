@@ -16,3 +16,14 @@ import "../stylesheets/application"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+import '@fortawesome/fontawesome-free/js/all';
+
+require("@rails/ujs").start()
+require("turbolinks").start()
+require("@rails/activestorage").start()
+require("channels")
+// ここから
+require("jquery")
+import "cocoon";
+//ここまで
