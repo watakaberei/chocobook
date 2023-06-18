@@ -1,6 +1,14 @@
 <h1>レシピ投稿</h1>
+<% if @recipe.errors.any? %>
+  <%= @recipe.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @recipe.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 
-<%= form_with model: Recipe.new do |f| %>
+<%= form_with model: @recipe, local: true do |f| %>
 
   <p>画像</p>
   <%= f.file_field :image, accept: "image/*" %>
@@ -12,17 +20,27 @@
   <%= f.text_area :introduction %>
 
   <p>材料・分量</p>
-  <%= f.text_field :material %>
+  <div id="materials">
+  <%= f.fields_for :materials do |material| %>
+  <%= render "material_fields", f: material %>
+  <% end %>
+  <%= link_to_add_association "追加", f, :materials %>
+  </div>
 
   <p>調理時間</p>
   <%= f.text_field :cooktime %>
 
   <p>調理手順</p>
-  <%= f.text_area :procedure, size: "40x20" %>
+  <div id="materials">
+  <%= f.fields_for :procedures do |procedure| %>
+  <%= render "procedure_fields", f: procedure %>
+  <% end %>
+  <%= link_to_add_association "追加", f, :procedures %>
+  </div>
 
   <p>カテゴリー</p>
   <div class="check_box">
-    <%= f.collection_select(:category_id, Category.all, :id, :name) do |category| %>
+    <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category| %>
       <div class='form-check'>
      　 <%= category.label do %>
       　  <%= category.check_box %>
@@ -33,7 +51,9 @@
   </div>
 
   <div>
-  <%= f.submit '投稿' %>
+    <%= f.submit 'レシピを公開', :name => "公開", class: 'mr-5 btn btn-sm btn-warning text-white' %>
+    <%= f.submit '下書きに保存', :name => "下書き", class: 'mr-5 btn btn-sm btn-outline-secondary' %>
   </div>
+  <%= f.hidden_field :customer_id, :value => current_customer.id %>
 <% end %>
 

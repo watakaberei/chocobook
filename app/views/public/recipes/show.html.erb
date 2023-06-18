@@ -10,13 +10,22 @@
 <%= @recipe.introduction %>
 
 <p>材料・分量</p>
-<%= @recipe.material %>
+<% @recipe.materials.each do |material| %>
+  <div class="material__ul">
+    <%= material.name %>
+    <%= material.amount %>
+  </div>
+<% end %>
 
 <p>調理時間</p>
 <%= @recipe.cooktime %>
 
 <p>調理手順</p>
-<%= @recipe.procedure %>
+<% @recipe.procedures.each do |procedure| %>
+  <div class="procedure__ul">
+    <%= procedure.body %>
+  </div>
+<% end %>
 
 <% @recipe.categories.each do |category| %>
     <%= category.name %>
