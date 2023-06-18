@@ -1,9 +1,32 @@
- <% if @recipes.exists? %>
-    <% @recipes.each do |recipe| %>
-     <%= image_tag recipe.image, size: "250x200" %>
-     <%= recipe.name %>
-     <%= recipe.introduction %>
-    <% end %>
-　<% else %>
-  　　<p>該当する記事は見つかりませんでした。</p>
-　<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h2>検索結果</h2>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+
+    <div class="col-lg-3">
+      <%= render 'public/categories/sidebar', categories: @categories %>
+    </div>
+
+    <div class="col-lg-9">
+      <div class="row">
+        <% if @recipes.exists? %>
+        <% @recipes.each do |recipe| %>
+          <div class="col-lg-4 mb-4">
+            <%= image_tag recipe.image, size: "250x200" %>
+            <div class="text-center">
+              <%= link_to recipe.name, recipe_path(recipe) %>
+            </div>
+          </div>
+          <% end %>
+       　<% else %>
+         　　<p>該当する記事は見つかりませんでした。</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>

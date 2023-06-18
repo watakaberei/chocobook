@@ -1,32 +1,60 @@
+<div>
+  <%= flash[:notice] %>
+</div>
+
 <h1>編集ページ</h1>
 
-<%= form_with model: @recipe do |f| %>
+<%= form_with model: @recipe, local:true do |f| %>
 
   <p>画像</p>
   <%= f.file_field :image, accept: "image/*" %>
-  
+
   <p>レシピ名</p>
   <%= f.text_field :name %>
 
   <p>紹介文</p>
   <%= f.text_area :introduction %>
-  
+
   <p>材料・分量</p>
-  <%= f.text_field :material %>
-  
+  <div id="materials">
+  <%= f.fields_for :materials do |material| %>
+  <%= f.hidden_field :id, value: material.object.id %>
+  <%= render "material_fields", f: material %>
+  <% end %>
+  <%= link_to_add_association "追加", f, :materials %>
+  </div>
+
   <p>調理時間</p>
   <%= f.text_field :cooktime %>
-  
-  <p>調理手順</p>
-  <%= f.text_area :procedure, size: "40x20" %>
-  
-  <p>カテゴリー</p>
-  <%= f.collection_select(:category_id, Category.all, :id, :name) %>
 
-  <div>
-    <%= f.submit '編集する' %>
+  <p>調理手順</p>
+  <div id="procedures">
+  <%= f.fields_for :procedures do |procedure| %>
+  <%= f.hidden_field :id, value: procedure.object.id %>
+  <%= render "procedure_fields", f: procedure %>
+  <% end %>
+  <%= link_to_add_association "追加", f, :procedures %>
   </div>
-  
+
+  <p>カテゴリー</p>
+  <div class="check_box">
+    <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category| %>
+      <div class='form-check'>
+     　 <%= category.label do %>
+      　  <%= category.check_box %>
+      　  <%= category.text %>
+      　<% end %>
+      </div>
+    <% end %>
+  </div>
+
+
+  <% if @recipe.is_draft == true %>
+    <%= f.submit "レシピを公開", :name => 'publicize_draft', class:'mr-5 btn btn-sm btn-warning' %>
+    <%= f.submit "下書きを更新", :name => 'update_draft', class:'mr-5 btn btn-sm btn-outline-secondary' %>
+  <% else %>
+    <%= f.submit "レシピを更新", :name => 'update_post', class:'btn btn-sm btn-warning text-light' %>
+  <% end %>
 
 <% end %>
 
