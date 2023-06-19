@@ -1,70 +1,95 @@
-<h1>レシピ詳細</h1>
-
-<p>画像</p>
-<%= image_tag @recipe.image, size: "250x200" %>
-
-<p>レシピ名</p>
-<%= @recipe.name %>
-
-<p>紹介文</p>
-<%= @recipe.introduction %>
-
-<p>材料・分量</p>
-<% @recipe.materials.each do |material| %>
-  <div class="material__ul">
-    <%= material.name %>
-    <%= material.amount %>
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h3 class="mt-3 mb-3"><%= @recipe.name %></h3>
+      <p class="mt-3 mb-5"><%= @recipe.introduction %></p>
+    </div>
   </div>
-<% end %>
 
-<p>調理時間</p>
-<%= @recipe.cooktime %>
+  <div class="row">
+    <div class="col-lg-5">
+      <%= image_tag @recipe.image, size: "350x290" %>
+    </div>
 
-<p>調理手順</p>
-<% @recipe.procedures.each do |procedure| %>
-  <div class="procedure__ul">
-    <%= procedure.body %>
+    <div class="col-lg-7">
+      <div class="row">
+        <p class="pr-5">
+          <strong>材料・分量</strong>
+        </p>
+        <div id="materials">
+        <% @recipe.materials.each do |material| %>
+          <li class="material__ul">
+            <%= material.name %>
+            <%= material.amount %>
+          </li>
+        <% end %>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <p class="pr-5">
+          <strong>調理時間</strong>
+        </p>
+        <%= @recipe.cooktime %>
+      </div>
+    </div>
   </div>
-<% end %>
 
-<% @recipe.categories.each do |category| %>
-    <%= category.name %>
-<% end %>
+  <div class="row justify-content-center mt-5">
+    <h4>調理手順</h4>
+  </div>
 
-<% if @recipe.recipe_bookmarked_by?(current_customer) %>
-  <p>
-    <%= link_to recipe_recipe_bookmarks_path(@recipe), method: :delete do %>
-      ♥<%= @recipe.recipe_bookmarks.count %> いいね
+  <div class="row justify-content-center mt-1">
+    <div class="procedure__ul">
+    <% @recipe.procedures.each do |procedure| %>
+      <div class="procedure__ul">
+        <%= procedure.body %>
+      </div>
     <% end %>
-  </p>
-  <% else %>
-  <p>
-    <%= link_to recipe_recipe_bookmarks_path(@recipe), method: :post do %>
-      ♡<%= @recipe.recipe_bookmarks.count %> いいね
-    <% end %>
-  </p>
-<% end %>
+    </div>
+  </div>
 
-
-<div>
-  <p>コメント件数：<%= @recipe.recipe_comments.count %></p>
-  <% @recipe.recipe_comments.each do |recipe_comment| %>
-  <div>
-    <%= recipe_comment.customer.user_name %>
-    <%= recipe_comment.created_at.strftime('%Y/%m/%d') %><%= recipe_comment.comment %>
-    <% if recipe_comment.customer == current_customer %>
-      <%= link_to "削除", recipe_recipe_comment_path(recipe_comment.recipe, recipe_comment), method: :delete %>
+  <div class="row mt-5">
+    <% if @recipe.recipe_bookmarked_by?(current_customer) %>
+      <p>
+        <%= link_to recipe_recipe_bookmarks_path(@recipe), method: :delete do %>
+          ♥<%= @recipe.recipe_bookmarks.count %> いいね
+        <% end %>
+      </p>
+      <% else %>
+      <p>
+        <%= link_to recipe_recipe_bookmarks_path(@recipe), method: :post do %>
+          ♡<%= @recipe.recipe_bookmarks.count %> いいね
+        <% end %>
+      </p>
     <% end %>
-  <% end %>
+  </div>
+
+  <div class="row">
+    <p>コメント件数：<%= @recipe.recipe_comments.count %></p>
+  </div>
+
+  <div class="px-5">
+    <% @recipe.recipe_comments.each do |recipe_comment| %>
+      <%= recipe_comment.created_at.strftime('%Y/%m/%d') %>
+      <%= recipe_comment.customer.user_name %>
+      <%= recipe_comment.comment %>
+      <% if recipe_comment.customer == current_customer %>
+        <%= link_to "削除", recipe_recipe_comment_path(recipe_comment.recipe, recipe_comment), method: :delete %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="row justify-content-center mt-4">
+    <%= form_with model: [@recipe, @recipe_comment] do |f| %>
+      <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", size:'60 x 2', class:'p-2' %>
+      <%= f.submit "送信する" %>
+    <% end %>
+  </div>
+
+  <div class="row mt-5 mb-5">
+    <% if customer_signed_in? && current_customer.id == @recipe.customer_id %>
+    <%= link_to "編集する", edit_recipe_path(@recipe), class: "btn btn-success" %>
+    <% end %>
   </div>
 </div>
-<div>
-  <%= form_with model: [@recipe, @recipe_comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-  <% end %>
-</div>
-
-<% if customer_signed_in? && current_customer.id == @recipe.customer_id %>
-<%= link_to "編集する", edit_recipe_path(@recipe) %>
-<% end %>
