@@ -21,12 +21,16 @@
           <% end %>
           </div>
           </form>
-          <% if customer_signed_in? %>
+          <% if admin_signed_in? %>
+            <%= link_to admin_root_path do %>
+              <%= image_tag("logo.jpg", style: "width: 150px; height: auto;") %>
+            <% end %>
+            <% elsif customer_signed_in? %>
             <%= link_to root_path do %>
               <%= image_tag("logo.jpg", style: "width: 150px; height: auto;") %>
             <% end %>
-            <% else admin_signed_in? %>
-            <%= link_to admin_root_path do %>
+            <% else %>
+            <%= link_to root_path do %>
               <%= image_tag("logo.jpg", style: "width: 150px; height: auto;") %>
             <% end %>
           <% end %>
@@ -55,7 +59,7 @@
         </div>
       </nav>
     </header>
-    <main class="mb-auto">
+    <main>
     <%= yield %>
     </main>
     <footer>

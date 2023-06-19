@@ -1,8 +1,27 @@
-<h1>カテゴリレシピ一覧</h1>
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h2><%= @category.name %>のページ</h2>
+    </div>
+  </div>
 
-<% @category.recipes.each do |recipe| %>
-    <%= recipe.name %>
-    <% recipe.categories.each do |category| %>
-       <%= category.name %>
-    <% end %>
-<% end %>
+  <div class="row mt-5">
+
+    <div class="col-lg-3">
+      <%= render 'public/categories/sidebar', categories: @categories %>
+    </div>
+
+    <div class="col-lg-9">
+      <div class="row">
+        <% @category.recipes.each do |recipe| %>
+          <div class="col-lg-4 mb-4">
+            <%= image_tag recipe.image, size: "250x200" %>
+            <div class="text-center">
+              <%= link_to recipe.name, recipe_path(recipe) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,9 +1,35 @@
-<h1>いいね一覧</h1>
-<% @recipe_bookmark_recipes.each do |recipe|%>
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h3>コメント一覧</h3>
+    </div>
+  </div>
 
-<div>
-<%= recipe.customer.user_name %>
-<%= recipe.name %>
-<%= link_to "詳細", recipe_path(recipe) %>
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>コメントid</th>
+            <th>ユーザー名</th>
+            <th>レシピ名</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @recipe_bookmark_recipes.each do |recipe|%>
+          <tr>
+            <td><%= recipe.recipe_bookmark_ids %></td>
+            <td><%= recipe.customer.user_name %></td>
+            <td><%= recipe.name %></td>
+            <td>
+              <%= link_to "詳細", recipe_path(recipe) %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-<% end %>
+
