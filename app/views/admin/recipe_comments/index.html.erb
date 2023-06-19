@@ -1,13 +1,39 @@
-<h1>コメント一覧</h1>
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h3 class="mt-3 mb-3">コメント一覧</h3>
+    </div>
+  </div>
 
-<% @recipe_comments.each do |recipe_comment| %>
-
-<div>
-  <%= recipe_comment.id %>
-  <%= recipe_comment.customer.last_name %><%= recipe_comment.customer.first_name %>
-  <%= recipe_comment.customer.user_name %>
-  <%= recipe_comment.recipe.name %>
-  <%= recipe_comment.comment %>
-  <%= link_to "詳細", admin_recipe_path(recipe_comment.recipe_id) %>
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>コメントid</th>
+            <th>名前</th>
+            <th>ユーザー名</th>
+            <th>商品名</th>
+            <th>コメント</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @recipe_comments.each do |recipe_comment| %>
+          <tr>
+            <td><%= recipe_comment.id %></td>
+            <td>
+                <%= recipe_comment.customer.last_name %>
+                <%= recipe_comment.customer.first_name %>
+            </td>
+            <td><%= recipe_comment.customer.user_name %></td>
+            <td><%= recipe_comment.recipe.name %></td>
+            <td><%= recipe_comment.comment %></td>
+            <td><%= link_to "詳細", admin_recipe_path(recipe_comment.recipe_id) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-<% end %>
+

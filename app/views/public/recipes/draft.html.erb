@@ -2,13 +2,21 @@
   <%= flash[:notice] %>
 </div>
 
-<h1>下書き一覧</h1>
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h2>下書き一覧</h2>
+    </div>
+  </div>
 
-<% @recipes.each do |recipe| %>
-
-<%= image_tag recipe.image, size: "250x200" %>
-<div>
-<%= link_to recipe.name, edit_recipe_path(recipe) %>
+  <div class="row mt-5">
+    <% @recipes.each do |recipe| %>
+      <div class="col-lg-4 mb-4">
+        <%= image_tag recipe.image, size: "250x200" %>
+        <div class="mx-auto">
+          <%= link_to recipe.name, edit_recipe_path(recipe) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<% end %>
