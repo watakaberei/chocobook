@@ -26,8 +26,8 @@ class Recipe < ApplicationRecord
   end
 
  def self.search(search_word) #①
-  Recipe.where(["name LIKE(?) OR introduction LIKE(?) OR procedure LIKE(?)", #②
-                 "%#{search_word}%", "%#{search_word}%", "%#{search_word}%"])
+  Recipe.where(["name LIKE(?) OR introduction LIKE(?)", #②
+                 "%#{search_word}%", "%#{search_word}%"])
  end
 
 
