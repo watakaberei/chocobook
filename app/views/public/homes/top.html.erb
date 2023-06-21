@@ -24,11 +24,55 @@
       </h6>
     </div>
   </div>
+
   <div class="row mt-3">
     <div class="col-lg-3">
         <%= render 'public/categories/sidebar', categories: @categories %>
     </div>
+
+    <div class="col-lg-8">
+      <div class="row justify-content-center">
+        <h3>※新着レシピ※</h3>
+      </div>
+
+      <div class="row mt-3">
+        <% @recipes.last(3).each do |recipe| %>
+          <div class="col-lg-4 mb-4">
+            <%= image_tag recipe.image, size: "220x170" %>
+            <div class="text-center">
+              <%= link_to recipe.name, recipe_path(recipe) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="row justify-content-end">
+        <%= link_to "もっと詳しく見る", recipes_path %>
+      </div>
+
+      <div class="row justify-content-center mt-5">
+        <h3>👑ランキング発表👑</h3>
+      </div>
+
+      <div class="row mt-3">
+        <% @recipes.take(3).each.with_index(1) do |recipe, i| %>
+          <div class="col-lg-4 mb-4">
+            <div class="recipe-info"><i class="fas fa-crown"></i> 第<%= i %>位</div>
+            <%= image_tag recipe.image, size: "220x170" %>
+            <div class="text-center">
+              <%= link_to recipe.name, recipe_path(recipe) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="row justify-content-end">
+        <%= link_to "もっと詳しく見る", rank_path %>
+      </div>
+
+    </div>
   </div>
+
 </div>
 
 
