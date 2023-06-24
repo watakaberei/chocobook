@@ -16,14 +16,25 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :materials, allow_destroy: true
 
   #バリデーションの設定
-  with_options presence: true, on: :publicize do
-  validates :name, presence: true
-  validates :introduction, presence: true
-  validates :cooktime, presence: true
-  validates :image, presence: true
-  validates :material, presence: true
-  validates :procedure, presence: true
+  with_options presence: true, unless: :draft? do
+    validates :name
+    validates :introduction
+    validates :cooktime
+    validates :image
+    #validates :material
+    #validates :procedure
   end
+
+  with_options presence: true, if: :draft? do
+    validates :name
+  end
+
+
+
+  def draft?
+    self.is_draft
+  end
+
 
  def self.search(search_word) #①
   Recipe.where(["name LIKE(?) OR introduction LIKE(?)", #②
