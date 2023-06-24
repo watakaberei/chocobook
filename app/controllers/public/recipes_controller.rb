@@ -26,9 +26,15 @@ class Public::RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.customer_id = current_customer.id
+    if params[:submit_name] == "下書きに保存"
+      @recipe.is_draft = true
+    end
     #投稿ボタンを押した場合
-    if params["公開"] == "レシピを公開"
-      if @recipe.materials.each(&:save)
+    #if params["公開"] == "レシピを公開"
+    unless @recipe.draft?
+      if @recipe.save
+      #if @recipe.materials.each(&:save)
+        #byebug
         redirect_to recipe_path(@recipe)
       else
         render :new, alert: "登録できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
