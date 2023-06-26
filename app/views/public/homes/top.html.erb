@@ -9,7 +9,7 @@
   </div>
 </div>
 
-<div class="jumbotron" style="background-image: url(<%= image_url 'チョコレート背景.jpg' %>); background-size: cover; height: 320px">
+<div class="jumbotron" style="background-image: url(<%= image_url 'チョコレート背景.jpg' %>); background-size: cover; height: 400px">
   <div class="container">
     <h1 class="display-5 mt-5">Welcome to Chocobook</h1>
   </div>
@@ -27,47 +27,55 @@
 
   <div class="row mt-3">
     <div class="col-lg-3">
-        <%= render 'public/categories/sidebar', categories: @categories %>
+      <%= render 'public/categories/sidebar', categories: @categories %>
     </div>
 
+
     <div class="col-lg-8">
-      <div class="row justify-content-center">
-        <h3>※新着レシピ※</h3>
-      </div>
+      <div class="newrecipe-box">
+        <div class="row justify-content-center">
+          <h3>新着レシピ</h3>
+        </div>
 
-      <div class="row mt-3">
-        <% @recipes.last(3).each do |recipe| %>
-          <div class="col-lg-4 mb-4">
-            <%= image_tag recipe.image, size: "220x170" %>
-            <div class="text-center">
-              <%= link_to recipe.name, recipe_path(recipe) %>
+        <div class="row mt-3">
+          <% @recipes.last(3).each do |recipe| %>
+            <div class="col-lg-4 mb-4">
+              <% if recipe.image.attached? %>
+              <%= image_tag recipe.image, size: "250x200" %>
+              <% end %>
+              <div class="text-center">
+                <%= link_to recipe.name, recipe_path(recipe) %>
+              </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
+
+
+        <div class="row justify-content-end">
+          <%= link_to "もっと詳しく見る", recipes_path %>
+        </div>
       </div>
 
-      <div class="row justify-content-end">
-        <%= link_to "もっと詳しく見る", recipes_path %>
-      </div>
+      <div class="rankingrecipe-box">
+        <div class="row justify-content-center mt-5">
+          <h3>👑ランキング発表👑</h3>
+        </div>
 
-      <div class="row justify-content-center mt-5">
-        <h3>👑ランキング発表👑</h3>
-      </div>
-
-      <div class="row mt-3">
-        <% @recipes.take(3).each.with_index(1) do |recipe, i| %>
-          <div class="col-lg-4 mb-4">
-            <div class="recipe-info"><i class="fas fa-crown"></i> 第<%= i %>位</div>
-            <%= image_tag recipe.image, size: "220x170" %>
-            <div class="text-center">
-              <%= link_to recipe.name, recipe_path(recipe) %>
+        <div class="row mt-3">
+          <% @recipes.take(3).each.with_index(1) do |recipe, i| %>
+            <div class="col-lg-4 mb-4">
+              <div class="recipe-info"><i class="fas fa-crown"></i> 第<%= i %>位</div>
+              <%= image_tag recipe.image, size: "250x200" %>
+              <div class="text-center">
+                <%= link_to recipe.name, recipe_path(recipe) %>
+              </div>
             </div>
-          </div>
-        <% end %>
-      </div>
+          <% end %>
+        </div>
 
-      <div class="row justify-content-end">
-        <%= link_to "もっと詳しく見る", rank_path %>
+        <div class="row justify-content-end">
+          <%= link_to "もっと詳しく見る", rank_path %>
+        </div>
       </div>
 
     </div>
