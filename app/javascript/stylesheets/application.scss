@@ -55,23 +55,24 @@ a {
 
 /*マスキングテープ風*/
 .category{
-margin: 2em auto;
-background-color: #F6EEEC;/*ボックス背景色*/
-padding: 2.5em 2em 2em;/*ボックス内側余白*/
-position: relative;/*配置(ここを基準に)*/
+  margin: 2em auto;
+  background-color: #F6EEEC;/*ボックス背景色*/
+  padding: 2.5em 2em 2em;/*ボックス内側余白*/
+  position: relative;/*配置(ここを基準に)*/
 }
 
 .category-title {
-background-image: repeating-linear-gradient(-45deg,#F6EEEC 0, #F6EEEC 3px,#fafafa 3px,#fafafa 6px);/*ストライプ*/
-border-left: 2px dotted rgba(0,0,0,.1);/* テープのギザギザ左*/
-border-right: 2px dotted rgba(0,0,0,.1);/* テープのギザギザ右*/
-transform: rotate(-2deg);/*テープの傾き*/
-font-size: 1em;/*タイトル文字の大きさ*/
-padding: 10px 20px;/*タイトルの余白*/
-line-height: 1;/*タイトルの行の高さ*/
-position: absolute;	/*配置(ここを動かす)*/
-top: -15px; /*上から（-10px）移動*/
-left: 20px; /*左から(20px)移動*/
+  background-image: repeating-linear-gradient(-45deg, #F6EEEC 0, #F6EEEC 3px, #fafafa 3px, #fafafa 6px);
+  border-left: 2px dotted rgba(0, 0, 0, .1);
+  border-right: 2px dotted rgba(0, 0, 0, .1);
+  transform: rotate(-2deg);
+  font-size: 1em;
+  padding: 10px 20px;
+  line-height: 1;
+  position: absolute;
+  top: 10px; /* 上から（10px）移動 */
+  left: 20px; /* 左から(20px)移動 */
+  z-index: 1;
 }
 
 .newrecipe-box {
