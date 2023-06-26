@@ -1,0 +1,13 @@
+<% if @recipe.recipe_bookmarked_by?(current_customer) %>
+  <p>
+    <%= link_to recipe_recipe_bookmarks_path(@recipe), method: :delete, remote: true do %>
+      ♥<%= @recipe.recipe_bookmarks.count %> いいね
+    <% end %>
+  </p>
+  <% else %>
+  <p>
+    <%= link_to recipe_recipe_bookmarks_path(@recipe), method: :post, remote: true do %>
+      ♡<%= @recipe.recipe_bookmarks.count %> いいね
+    <% end %>
+  </p>
+<% end %>
