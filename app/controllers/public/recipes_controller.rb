@@ -56,7 +56,7 @@ class Public::RecipesController < ApplicationController
   end
 
   def history
-    @recipes = current_customer.recipes.order(created_at: :desc)
+    @recipes = current_customer.recipes
   end
 
   def show
