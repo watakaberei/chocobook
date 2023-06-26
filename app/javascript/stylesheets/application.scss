@@ -5,6 +5,15 @@
 @import '@fortawesome/fontawesome-free/scss/fontawesome';
 
 @import url('https://fonts.googleapis.com/css2?family=Kaisei+HarunoUmi:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kaisei+HarunoUmi:wght@500&family=Kaisei+Opti:wght@700&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #6c6b6b;
+}
 
 header {
   background-color: #f5f5f5;
@@ -17,6 +26,83 @@ main {
   font-size: 20px;
 }
 
+.jumbotron h1 {
+  padding-top: 60px;
+  margin: 0 auto;
+  text-align: center;
+  color: #800000;
+  font-family: 'Kaisei Opti', serif;
+}
+
 a {
   color: #C71585; /* 任意の文字色を指定 */
+}
+
+.new-recipe{
+  margin:2em 0;
+  position: relative;
+  padding: 0.25em 1em;
+  border: solid 2px #87cefa;
+  border-radius: 3px 0 3px 0;
+}
+.new-recipe:before,.new-recipe:after{
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: solid 2px #87cefa;
+  border-radius: 50%;
+}
+.new-recipe:after {
+  top:-12px;
+  left:-12px;
+}
+.new-recipe:before {
+  bottom:-12px;
+  right:-12px;
+}
+
+.ranking-recipe{
+  margin:2em 0;
+  position: relative;
+  padding: 0.25em 1em;
+  border: solid 2px #ffd700;
+  border-radius: 3px 0 3px 0;
+}
+.ranking-recipe:before,.ranking-recipe:after{
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: solid 2px #ffd700;
+  border-radius: 50%;
+}
+.ranking-recipe:after {
+  top:-12px;
+  left:-12px;
+}
+.ranking-recipe:before {
+  bottom:-12px;
+  right:-12px;
+}
+
+/*マスキングテープ風*/
+.category{
+margin: 2em auto;
+background-color: #F6EEEC;/*ボックス背景色*/
+padding:2.5em 2em 2em;/*ボックス内側余白*/
+position:relative;/*配置(ここを基準に)*/
+}
+
+.category-title {
+background-image: repeating-linear-gradient(-45deg,#F6EEEC 0, #F6EEEC 3px,#fafafa 3px,#fafafa 6px);/*ストライプ*/
+border-left: 2px dotted rgba(0,0,0,.1);/* テープのギザギザ左*/
+border-right: 2px dotted rgba(0,0,0,.1);/* テープのギザギザ右*/
+transform: rotate(-2deg);/*テープの傾き*/
+font-size: 1em;/*タイトル文字の大きさ*/
+padding: 10px 20px;/*タイトルの余白*/
+line-height: 1;/*タイトルの行の高さ*/
+position:absolute;	/*配置(ここを動かす)*/
+top: -15px; /*上から（-10px）移動*/
+left: 20px; /*左から(20px)移動*/
 }
