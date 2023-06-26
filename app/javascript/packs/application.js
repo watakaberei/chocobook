@@ -8,10 +8,11 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
-import "jquery";
+// import "jquery";
+window.$ = window.jQuery = require("jquery");
 import "popper.js";
 import "bootstrap";
-import "../stylesheets/application" 
+import "../stylesheets/application"
 
 Rails.start()
 Turbolinks.start()
@@ -19,11 +20,6 @@ ActiveStorage.start()
 
 import '@fortawesome/fontawesome-free/js/all';
 
-require("@rails/ujs").start()
-require("turbolinks").start()
-require("@rails/activestorage").start()
-require("channels")
 // ここから
-require("jquery")
-import "cocoon";
+require("@nathanvda/cocoon")
 //ここまで
