@@ -20,6 +20,36 @@ header {
   font-family: 'Kaisei HarunoUmi', serif;
 }
 
+nav{
+text-align: center;
+}
+
+.navbar-nav{
+margin: 0 ;
+padding: 0 ;
+}
+
+.navbar-nav li{
+list-style: none;
+display: inline-block;
+width: 10%;
+min-width: 130px;
+}
+
+.navbar-nav li:not(:last-child){
+border-right:2px solid #ddd;
+}
+
+.navbar-nav a{
+text-decoration: none;
+color: #333;
+}
+
+.navbar-nav a:hover{
+color:#F7CB4D;
+border-bottom:2px solid #F7CB4D;
+}
+
 main {
   background-color: #f5deb3;
   font-family: 'Kaisei HarunoUmi', serif;
