@@ -1,14 +1,3 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col text-center mt-4 mb-4">
-      <%= link_to "チョコレートについて", about_path %>
-    </div>
-    <div class="col text-center mt-4 mb-4">
-      <%= link_to "レシピ一覧", recipes_path %>
-    </div>
-  </div>
-</div>
-
 <div class="jumbotron" style="background-image: url(<%= image_url 'チョコレート背景.jpg' %>); background-size: cover; height: 400px">
   <div class="container">
     <h1 class="display-5 mt-5">Welcome to Chocobook</h1>
@@ -18,10 +7,21 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h6>本サイトはチョコレート専門のレシピ投稿サイトとなっております。
-          閲覧は登録不要で可能ですが、<br />
+      <p>本サイトはチョコレート専門のレシピ投稿サイトとなっております。<br />
+          閲覧は登録不要で可能ですが、
           会員登録していただきますと、レシピ投稿やコメントをすることが出来ます。
-      </h6>
+      </p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col text-center mt-5 mb-4">
+        <%= link_to "チョコレートについて", about_path %>
+      </div>
+      <div class="col text-center mt-5 mb-4">
+        <%= link_to "レシピ一覧", recipes_path %>
+      </div>
     </div>
   </div>
 
@@ -32,14 +32,14 @@
 
 
     <div class="col-lg-8">
-      <div class="newrecipe-box">
+      <div class="newrecipe-box" style="width: 850px">
         <div class="row justify-content-center">
-          <h3>新着レシピ</h3>
+          <h3 class="newbox">新着レシピ</h3>
         </div>
 
         <div class="row mt-3">
           <% @recipes.last(3).each do |recipe| %>
-            <div class="col-lg-4 mb-4">
+            <div class="mx-auto" style="margin-right: 10px;">
               <% if recipe.image.attached? %>
               <%= image_tag recipe.image, size: "250x200" %>
               <% end %>
@@ -51,20 +51,20 @@
         </div>
 
 
-        <div class="row justify-content-end">
+        <div class="row justify-content-end mt-5">
           <%= link_to "もっと詳しく見る", recipes_path %>
         </div>
       </div>
 
-      <div class="rankingrecipe-box">
+      <div class="rankingrecipe-box" style="width: 850px">
         <div class="row justify-content-center mt-5">
-          <h3>👑ランキング発表👑</h3>
+          <h3>ランキング発表</h3>
         </div>
 
         <div class="row mt-3">
           <% @recipes.take(3).each.with_index(1) do |recipe, i| %>
-            <div class="col-lg-4 mb-4">
-              <div class="recipe-info"><i class="fas fa-crown"></i> 第<%= i %>位</div>
+           <div class="mx-auto" style="margin-right: 10px;">
+              <div class="recipe-info text-center"><i class="fas fa-crown"></i> 第<%= i %>位</div>
               <%= image_tag recipe.image, size: "250x200" %>
               <div class="text-center">
                 <%= link_to recipe.name, recipe_path(recipe) %>
@@ -73,7 +73,7 @@
           <% end %>
         </div>
 
-        <div class="row justify-content-end">
+        <div class="row justify-content-end mt-5">
           <%= link_to "もっと詳しく見る", rank_path %>
         </div>
       </div>
