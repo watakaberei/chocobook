@@ -35,7 +35,7 @@
           <td class="px-4 py-4">
             <div id="materials">
             <%= f.fields_for :materials do |material| %>
-            <%= render "material_fields", f: material %>
+              <%= render "material_fields", f: material %>
             <% end %>
             </div>
             <div>
@@ -79,8 +79,8 @@
 
   <div class="row">
     <div class="col text-center">
-      <%= f.submit 'レシピを公開', :name => "公開", class: 'mr-5 btn btn-sm btn-warning text-white' %>
-      <%= f.submit '下書きに保存', :name => "下書き", class: 'mr-5 btn btn-sm btn-outline-secondary' %>
+      <%= f.submit 'レシピを公開', :name => 'submit_name', class: 'mr-5 btn btn-sm btn-warning text-white', "data-confirm" => "投稿しますか？" %>
+      <%= f.submit '下書きに保存', :name => 'submit_name', class: 'mr-5 btn btn-sm btn-outline-secondary', "data-confirm" => "下書き保存しますか？" %>
     </div>
   </div>
   <%= f.hidden_field :customer_id, :value => current_customer.id %>
