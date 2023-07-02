@@ -25,6 +25,7 @@
           <tr>
             <th><%= category.name %></th>
             <td><%= link_to "編集する", edit_admin_category_path(category), class:"btn btn-success" %></td>
+            <td><%= link_to "削除する", admin_category_path(category), method: :delete, "data-confirm" => "本当に削除しますか？", class:"btn btn-danger" %></td>
           </tr>
         </tbody>
       <% end %>
