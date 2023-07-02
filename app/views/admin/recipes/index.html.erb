@@ -1,18 +1,35 @@
-<h1>会員が投稿したレシピ一覧</h1>
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h3 class="mt-3 mb-3">会員のレシピ投稿一覧</h3>
+    </div>
+  </div>
 
-<% @recipes.each do |recipe| %>
-
-<p>レシピID</p>
-<%= recipe.id %>
-
-<p>名前</p>
-<%= recipe.customer.last_name %>
-<%= recipe.customer.first_name %>
-
-<p>ユーザー名</p>
-<%= recipe.customer.user_name %>
-
-<p>商品名</p>
-<%= link_to recipe.name, admin_recipe_path(recipe) %>
-
-<% end %>
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>レシピid</th>
+            <th>名前</th>
+            <th>ユーザー名</th>
+            <th>商品名</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @recipes.each do |recipe| %>
+          <tr>
+            <td><%= recipe.id %></td>
+            <td>
+                <%= recipe.customer.last_name %>
+                <%= recipe.customer.first_name %>
+            </td>
+            <td><%= recipe.customer.user_name %></td>
+            <td><%= link_to recipe.name, admin_recipe_path(recipe) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
