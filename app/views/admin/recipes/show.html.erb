@@ -41,43 +41,31 @@
 
   <div class="row justify-content-center mt-1">
     <div class="procedure__ul">
-    <% @recipe.procedures.each do |procedure| %>
-      <div class="procedure__ul">
-        <%= procedure.body %>
-      </div>
-    <% end %>
+      <ol>
+        <% @recipe.procedures.each do |procedure| %>
+          <li><%= procedure.body %></li>
+        <% end %>
+      </ol>
     </div>
-  </div>
-
-  <div class="row mt-5">
-    <% if @recipe.recipe_bookmarked_by?(current_customer) %>
-      <p>
-        <%= link_to recipe_recipe_bookmarks_path(@recipe), method: :delete do %>
-          ♥<%= @recipe.recipe_bookmarks.count %> いいね
-        <% end %>
-      </p>
-      <% else %>
-      <p>
-        <%= link_to recipe_recipe_bookmarks_path(@recipe), method: :post do %>
-          ♡<%= @recipe.recipe_bookmarks.count %> いいね
-        <% end %>
-      </p>
-    <% end %>
   </div>
 
   <div class="row">
     <p>コメント件数：<%= @recipe.recipe_comments.count %></p>
-      <% @recipe.recipe_comments.each do |recipe_comment| %>
+  </div>
+
+  <div class="px-5">
+    <% @recipe.recipe_comments.each do |recipe_comment| %>
+    <div>
+      <%= recipe_comment.created_at.strftime('%Y/%m/%d') %>
       <%= recipe_comment.customer.user_name %>
       <%= recipe_comment.comment %>
-      <%= link_to "削除", admin_recipe_comment_path(recipe_comment), method: :delete %>
-      <% end %>
+      <%= link_to "削除", admin_recipe_comment_path(recipe_comment), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    </div>
+    <% end %>
   </div>
 
   <div class="row mt-5 mb-5">
-    <% if customer_signed_in? && current_customer.id == @recipe.customer_id %>
-    <%= link_to "編集する", edit_recipe_path(@recipe), class: "btn btn-success" %>
-    <% end %>
+    <%= link_to "編集する", edit_admin_recipe_path(@recipe), class: "btn btn-success" %>
   </div>
 </div>
 
