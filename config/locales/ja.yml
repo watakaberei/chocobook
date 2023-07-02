@@ -1,0 +1,21 @@
+ja:
+  activerecord:
+    attributes:
+      customer:
+        last_name: 苗字
+        first_name: 名前
+        last_name_kana: カナ(苗字)
+        first_name_kana: カナ(名前)
+        user_name: ユーザー名
+        email: メールアドレス
+        password: パスワード
+      recipe:
+        cooktime: 調理時間
+        introduction: 説明文
+        name: レシピ名
+        image: 画像
+      materials:
+        name: 材料
+        amount: 分量
+      procedures:
+        body: 調理手順
