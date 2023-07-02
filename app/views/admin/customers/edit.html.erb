@@ -32,15 +32,6 @@
             <th>メールアドレス</th>
             <td> <%= f.email_field :email, autofocus: true, maxlength: "40" %></td>
           </tr>
-          <tr>
-            <th>会員ステータス</th>
-            <td>
-              <%= f.radio_button :is_deleted, false %>
-              <%= f.label :is_deleted, "有効" %>
-              <%= f.radio_button :is_deleted, true %>
-              <%= f.label :is_deleted, "退会" %>
-            </td>
-          </tr>
         </tbody>
       </table>
 

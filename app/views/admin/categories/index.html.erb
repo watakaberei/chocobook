@@ -7,8 +7,8 @@
 
   <div class="row">
     <div class="col-md-6">
+      <%= form_with model: @category,url: admin_categories_path do |f| %>
       <table class="table">
-        <%= form_with model: @category,url: admin_categories_path do |f| %>
         <tbody>
           <tr>
             <th>カテゴリ名</th>
@@ -16,8 +16,8 @@
             <td><%= f.submit '新規登録', class:"btn btn-success" %></td>
           </tr>
         </tbody>
-        <% end %>
       </table>
+      <% end %>
 
       <table class="table table-striped">
       <% @categories.each do |category| %>
