@@ -8,6 +8,21 @@ class Admin::RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
   end
 
+  def edit
+    @recipe = Recipe.find(params[:id])
+  end
+
+  def update
+    recipe = Recipe.find(params[:id])
+    recipe.update(recipe_params)
+    redirect_to admin_recipe_path(recipe.id)
+  end
+
+  def destroy
+    recipe = Recipe.find(params[:id])
+    recipe.destroy
+    redirect_to admin_root_path
+  end
 
   private
   # ストロングパラメータ
@@ -18,9 +33,9 @@ class Admin::RecipesController < ApplicationController
       :image,
       :introduction,
       :cooktime,
-      :material,
-      :procedure,
       :is_draft,
+      procedures_attributes: [:id, :body, :_destroy],
+      materials_attributes: [:id, :name, :amount, :_destroy],
       category_ids:[]
     )
   end
