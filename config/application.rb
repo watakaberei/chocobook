@@ -20,3 +20,14 @@ module Chocobook
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
+
+module Pictweet
+  class Application < Rails::Application
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 6.0
+
+    # 日本語の言語設定。この一行を追加。
+    config.i18n.default_locale = :ja
+      # 省略
+  end
+end
