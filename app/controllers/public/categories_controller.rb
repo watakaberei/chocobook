@@ -1,7 +1,9 @@
 class Public::CategoriesController < ApplicationController
-  
+
   def show
-    @category = Category.find(params[:id])  
+    @category = Category.find(params[:id])
+    @categories = Category.all
+    @recipes = @category.recipes.page(params[:page]).per(6)
   end
 
    private
