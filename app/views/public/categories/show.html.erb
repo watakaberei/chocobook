@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row mt-4">
     <div class="col text-center">
       <h2><%= @category.name %>のページ</h2>
     </div>
@@ -13,7 +13,7 @@
 
     <div class="col-lg-9">
       <div class="row">
-        <% @category.recipes.each do |recipe| %>
+        <% @recipes.each do |recipe| %>
           <div class="col-lg-4 mb-4">
             <%= image_tag recipe.image, size: "250x200" %>
             <div class="text-center">
@@ -22,6 +22,12 @@
           </div>
         <% end %>
       </div>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="mx-auto">
+      <%= paginate @recipes %>
     </div>
   </div>
 </div>
