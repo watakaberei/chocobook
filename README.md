@@ -36,6 +36,31 @@
 https://docs.google.com/spreadsheets/d/19YhdSgJyfXNRdhzw2skeaBo5lZrJRiKnih9b0EeQAfs/edit?usp=sharing
 
 ## 設計書
+●ER図:https://drive.google.com/file/d/13kVQ-WDM7FlkcDHIKGhWIY9djNezkTvf/view?usp=sharing
+●ワイヤーフレーム
+会員側:https://drive.google.com/file/d/10s3_TEb9cQiUv7jKT0-R6pilPDrY1GRT/view?usp=sharing
+管理側:https://drive.google.com/file/d/12Eevk7HGhEVVw78iqC-ESh0T6vnYm2gS/view?usp=sharing
+●テーブル定義書:https://docs.google.com/spreadsheets/d/1KvDmRBbLGMmldZCAfC9FIPV0ec3RYPT1wpjFuTz_AFU/edit?usp=sharing
+●詳細設計:https://docs.google.com/spreadsheets/d/13Q9GRcC0KOgpWawwW1uIqFyubpJuKydwvSUaB6bK7Tk/edit?usp=sharing
+
+##Gem
+
+###ログイン機能
+gem 'devise'
+
+###レイアウト
+gem 'bootsnap', '>= 1.4.4'
+gem 'jquery-rails'
+
+###動的フォーム実装機能
+gem 'cocoon'
+gem 'jquery-rails'
+
+###ページネーション機能
+gem 'kaminari','~> 1.2.1'
+
+###バリデーション日本語化
+gem 'rails-i18n'
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -44,4 +69,3 @@ https://docs.google.com/spreadsheets/d/19YhdSgJyfXNRdhzw2skeaBo5lZrJRiKnih9b0EeQ
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
-## 使用素材
