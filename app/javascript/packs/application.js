@@ -11,7 +11,7 @@ import "channels"
 // import "jquery";
 window.$ = window.jQuery = require("jquery");
 import "popper.js";
-import "bootstrap";
+//import "bootstrap";
 import "../stylesheets/application"
 
 Rails.start()
