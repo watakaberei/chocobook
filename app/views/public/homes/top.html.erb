@@ -14,7 +14,7 @@
     </div>
   </div>
 
-  <div class="about-box">
+  <div class="container" style="border-bottom: 8px solid #d3d3d3;">
     <div class="row justify-content-center">
       <div class="col text-center mt-5 mb-4">
         <i class="fas fa-mug-hot"></i><%= link_to "チョコレートについて", about_path %>
@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  <div class="row mt-3">
+  <div class="row mt-5">
     <div class="col-lg-3">
       <%= render 'public/categories/sidebar', categories: @categories %>
     </div>
@@ -38,7 +38,7 @@
         </div>
 
         <div class="row mt-3" style="display: flex; flex-direction: row-reverse;">
-          <% @recipes.last(3).each do |recipe| %>
+          <% @recipes_new.last(3).each do |recipe| %>
             <div class="mx-auto" style="margin-right: 10px;">
               <% if recipe.image.attached? %>
               <%= image_tag recipe.image, size: "250x200" %>
@@ -62,12 +62,15 @@
         </div>
 
         <div class="row mt-3">
-          <% @recipes.take(3).each.with_index(1) do |recipe, i| %>
+          <% @recipes_rank.take(3).each.with_index(1) do |recipe, i| %>
             <div class="mx-auto" style="margin-right: 10px;">
               <div class="recipe-info text-center"><i class="fas fa-crown"></i> 第<%= i %>位</div>
               <%= image_tag recipe.image, size: "250x200" %>
               <div class="text-center">
                 <%= link_to recipe.name, recipe_path(recipe) %>
+              </div>
+              <div class="text-center">
+                ♥<%= recipe.recipe_bookmarks.count %> いいね
               </div>
             </div>
           <% end %>

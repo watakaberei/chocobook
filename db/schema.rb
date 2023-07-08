@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2023_06_14_123908) do
 
   create_table "materials", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "amount", null: false
+    t.string "amount", null: false
     t.integer "recipe_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(version: 2023_06_14_123908) do
     t.integer "customer_id", null: false
     t.string "name", null: false
     t.string "introduction", null: false
-    t.integer "cooktime", null: false
+    t.string "cooktime", null: false
     t.boolean "is_draft", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

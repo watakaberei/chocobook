@@ -2,7 +2,7 @@ class Public::RecipesController < ApplicationController
   before_action :is_matching_login_customer, only: [:edit, :update]
 
   def index
-    @recipes = Recipe.where(is_draft: false).page(params[:page]).per(5)
+    @recipes = Recipe.where(is_draft: false).page(params[:page]).per(6)
     @categories = Category.all
   end
 
@@ -35,7 +35,7 @@ class Public::RecipesController < ApplicationController
       if @recipe.save
       #if @recipe.materials.each(&:save)
         #byebug
-        redirect_to recipe_path(@recipe)
+        redirect_to recipe_path(@recipe), notice: "投稿が完了しました！"
       else
         render :new, alert: "登録できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
       end
@@ -56,12 +56,11 @@ class Public::RecipesController < ApplicationController
   end
 
   def history
-    @recipes = current_customer.recipes
+    @recipes = current_customer.recipes.where(is_draft: false)
   end
 
   def show
     @recipe = Recipe.find(params[:id])
-    flash[:notice] = "詳細ページ"
     @recipe_comment = RecipeComment.new
   end
 
@@ -75,7 +74,7 @@ class Public::RecipesController < ApplicationController
     if params[:publicize_draft]
       # レシピ公開時にバリデーションを実施
       # updateメソッドにはcontextが使用できないため、公開処理にはattributesとsaveメソッドを使用する
-      if @recipe.vlalid?(context: :publicize) && @recipe.update(recipe_params.merge(is_draft: false))
+      if @recipe.valid?(context: :publicize) && @recipe.update(recipe_params.merge(is_draft: false))
         redirect_to recipe_path(@recipe.id), notice: "下書きのレシピを公開しました！"
       else
         @recipe.is_draft = true
@@ -91,7 +90,7 @@ class Public::RecipesController < ApplicationController
     # ③下書きレシピの更新（非公開）の場合
     else
       if @recipe.update(recipe_params)
-        redirect_to recipe_path(@recipe.id), notice: "下書きレシピを更新しました！"
+        redirect_to draft_path, notice: "下書きレシピを更新しました！"
       else
         render :edit, alert: "更新できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
       end
@@ -122,8 +121,10 @@ class Public::RecipesController < ApplicationController
 
   def is_matching_login_customer
     recipe = Recipe.find(params[:id])
-    unless recipe.customer_id == current_customer.id
+    if customer_signed_in?
+      unless recipe.customer_id == current_customer.id
       redirect_to root_path
+      end
     end
   end
 end

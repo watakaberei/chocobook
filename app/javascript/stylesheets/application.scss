@@ -16,8 +16,9 @@
 }
 
 header {
-  background-color: #f5f5f5;
+  background-color: white;
   font-family: 'Kaisei HarunoUmi', serif;
+  border-bottom: 3px solid #d3d3d3;
 }
 
 nav{
@@ -32,8 +33,8 @@ padding: 0 ;
 .navbar-nav li{
 list-style: none;
 display: inline-block;
-width: 10%;
-min-width: 130px;
+width: 100px;
+min-width: 120px;
 }
 
 .navbar-nav li:not(:last-child){
@@ -51,7 +52,7 @@ border-bottom:2px solid #F7CB4D;
 }
 
 main {
-  background-color: #f5deb3;
+  background-color: #ffffff;
   font-family: 'Kaisei HarunoUmi', serif;
   font-size: 20px;
 }
@@ -68,20 +69,6 @@ a {
   color: #C71585; /* 任意の文字色を指定 */
 }
 
-.recipe-title {
-  background-color: rgba(255,255,255,.1);/* テープ背景色と透過*/
-  border-left: 2px dotted rgba(0,0,0,.1);/* テープのギザギザ左*/
-  border-right: 2px dotted rgba(0,0,0,.1);/* テープのギザギザ右*/
-  box-shadow: 0 0 5px rgba(0,0,0,0.2); /*テープ影*/
-  transform: rotate(-2deg);/*テープの傾き*/
-  font-size: 1em;/*タイトル文字の大きさ*/
-  color: #666; /*タイトル文字色 */
-  padding: 10px 20px;/*タイトルの余白*/
-  line-height: 1;/*タイトルの行の高さ*/
-  position:absolute;/*配置(ここを動かす)*/
-  top: -15px; /*上から（-10px）移動*/
-  left: 20px; /*左から(20px)移動*/
-}
 
 /*マスキングテープ風*/
 .category{
@@ -100,7 +87,7 @@ a {
   padding: 10px 20px;
   line-height: 1;
   position: absolute;
-  top: 10px; /* 上から（10px）移動 */
+  top: 15px; /* 上から（10px）移動 */
   left: 20px; /* 左から(20px)移動 */
   z-index: 1;
 }
@@ -108,15 +95,23 @@ a {
 .newrecipe-box {
   padding: 0.2em 0.5em;
   margin: 2em 0;
-  background: #d6ebff;
-  box-shadow: 0px 0px 0px 10px #d6ebff;
-  border: dashed 2px white;
+  background: #f0f8ff;
+  box-shadow: 0px 0px 0px 10px #f0f8ff;
 }
 
 .rankingrecipe-box {
   padding: 0.2em 0.5em;
   margin: 2em 0;
-  background: #f0e68c;
-  box-shadow: 0px 0px 0px 10px #f0e68c;
-  border: dashed 2px white;
+  background: #f0ffff;
+  box-shadow: 0px 0px 0px 10px #f0ffff;
 }
+
+footer {
+  background-color: #dcdcdc;
+  height: 100px;
+}
+
+footer p {
+  margin-top: 30px;
+}
+

@@ -1,3 +1,7 @@
+<div>
+  <%= flash[:notice] %>
+</div>
+
 <div class="container">
   <div class="row">
     <div class="col text-center">
@@ -49,35 +53,41 @@
     </div>
   </div>
 
+  <div class="row text-right mt-5">
+    <p>投稿者：<%= @recipe.customer.user_name %>さん</p>
+  </div>
+
   <div class="row mt-5">
     <div id="recipe_bookmark_buttons_<%= @recipe.id %>">
       <%= render "public/recipe_bookmarks/recipe_bookmark", recipe: @recipe %>
     </div>
   </div>
 
-  <div class="row">
-    <p>コメント件数：<%= @recipe.recipe_comments.count %></p>
-  </div>
+  <% if customer_signed_in? %>
+    <div class="row">
+      <p>コメント件数：<%= @recipe.recipe_comments.count %></p>
+    </div>
 
-  <div class="px-5">
-    <% @recipe.recipe_comments.each do |recipe_comment| %>
-    <div>
-      <%= recipe_comment.created_at.strftime('%Y/%m/%d') %>
-      <%= recipe_comment.customer.user_name %>
-      <%= recipe_comment.comment %>
-      <% if recipe_comment.customer == current_customer %>
-        <%= link_to "削除", recipe_recipe_comment_path(recipe_comment.recipe, recipe_comment), method: :delete %>
+    <div class="px-5">
+      <% @recipe.recipe_comments.each do |recipe_comment| %>
+      <div>
+        <%= recipe_comment.created_at.strftime('%Y/%m/%d') %>
+        <%= recipe_comment.customer.user_name %>
+        <%= recipe_comment.comment %>
+        <% if recipe_comment.customer == current_customer %>
+          <%= link_to "削除", recipe_recipe_comment_path(recipe_comment.recipe, recipe_comment), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+        <% end %>
+      </div>
       <% end %>
     </div>
-    <% end %>
-  </div>
 
-  <div class="row justify-content-center mt-4">
-    <%= form_with model: [@recipe, @recipe_comment] do |f| %>
-      <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", size:'60 x 2', class:'p-2' %>
-      <%= f.submit "送信する" %>
-    <% end %>
-  </div>
+    <div class="row justify-content-center mt-4">
+      <%= form_with model: [@recipe, @recipe_comment] do |f| %>
+        <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", size:'60 x 2', class:'p-2' %>
+        <%= f.submit "送信する" %>
+      <% end %>
+    </div>
+  <% end %>
 
   <div class="row mt-5 mb-5">
     <% if customer_signed_in? && current_customer.id == @recipe.customer_id %>

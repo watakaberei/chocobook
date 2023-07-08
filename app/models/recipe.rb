@@ -27,9 +27,10 @@ class Recipe < ApplicationRecord
 
   with_options presence: true, if: :draft? do
     validates :name
+    validates :introduction
+    validates :cooktime
+    validates :image
   end
-
-
 
   def draft?
     self.is_draft
