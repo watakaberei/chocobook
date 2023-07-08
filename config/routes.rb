@@ -29,6 +29,7 @@ devise_for :customers,skip: [:passwords], controllers: {
       resource :recipe_bookmarks, only: [:create, :destroy]
       get :recipe_bookmarks
     end
+    get '/history' => 'recipes#history'
     get '/draft' => 'recipes#draft'
     get '/rank' => 'recipes#rank'
     get '/search' => 'recipes#search'
@@ -45,8 +46,8 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
   namespace :admin do
     root to: 'homes#top'
-    resources :customers, only: [:show, :edit, :update]
-    
+    resources :customers, only: [:index, :show, :edit, :update]
+
     resources :recipes
 
     resources :categories

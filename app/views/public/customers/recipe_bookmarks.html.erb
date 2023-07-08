@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col text-center">
-      <h3>コメント一覧</h3>
+      <h3>いいね一覧</h3>
     </div>
   </div>
 
@@ -10,7 +10,6 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>コメントid</th>
             <th>ユーザー名</th>
             <th>レシピ名</th>
             <th></th>
@@ -19,7 +18,6 @@
         <tbody>
           <% @recipe_bookmark_recipes.each do |recipe|%>
           <tr>
-            <td><%= recipe.recipe_bookmark_ids %></td>
             <td><%= recipe.customer.user_name %></td>
             <td><%= recipe.name %></td>
             <td>

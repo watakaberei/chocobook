@@ -46,6 +46,8 @@
             <%= f.fields_for :procedures do |procedure| %>
             <%= render "procedure_fields", f: procedure %>
             <% end %>
+            </div>
+            <div>
             <%= link_to_add_association "追加", f, :procedures %>
             </div>
           </td>
