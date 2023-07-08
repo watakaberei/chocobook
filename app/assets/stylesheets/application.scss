@@ -1,0 +1,117 @@
+@use '~bootstrap/scss/bootstrap';
+
+@import '~bootstrap/scss/bootstrap';
+
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+
+@import url('https://fonts.googleapis.com/css2?family=Kaisei+HarunoUmi:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kaisei+HarunoUmi:wght@500&family=Kaisei+Opti:wght@700&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #6c6b6b;
+}
+
+header {
+  background-color: white;
+  font-family: 'Kaisei HarunoUmi', serif;
+  border-bottom: 3px solid #d3d3d3;
+}
+
+nav{
+text-align: center;
+}
+
+.navbar-nav{
+margin: 0 ;
+padding: 0 ;
+}
+
+.navbar-nav li{
+list-style: none;
+display: inline-block;
+width: 100px;
+min-width: 120px;
+}
+
+.navbar-nav li:not(:last-child){
+border-right:2px solid #ddd;
+}
+
+.navbar-nav a{
+text-decoration: none;
+color: #333;
+}
+
+.navbar-nav a:hover{
+color:#F7CB4D;
+border-bottom:2px solid #F7CB4D;
+}
+
+main {
+  background-color: #ffffff;
+  font-family: 'Kaisei HarunoUmi', serif;
+  font-size: 20px;
+}
+
+.jumbotron h1 {
+  padding-top: 60px;
+  margin: 0 auto;
+  text-align: center;
+  color: #800000;
+  font-family: 'Kaisei Opti', serif;
+}
+
+a {
+  color: #C71585; /* 任意の文字色を指定 */
+}
+
+
+/*マスキングテープ風*/
+.category{
+  margin: 2em auto;
+  background-color: #F6EEEC;/*ボックス背景色*/
+  padding: 2.5em 2em 2em;/*ボックス内側余白*/
+  position: relative;/*配置(ここを基準に)*/
+}
+
+.category-title {
+  background-image: repeating-linear-gradient(-45deg, #F6EEEC 0, #F6EEEC 3px, #fafafa 3px, #fafafa 6px);
+  border-left: 2px dotted rgba(0, 0, 0, .1);
+  border-right: 2px dotted rgba(0, 0, 0, .1);
+  transform: rotate(-2deg);
+  font-size: 1em;
+  padding: 10px 20px;
+  line-height: 1;
+  position: absolute;
+  top: 15px; /* 上から（10px）移動 */
+  left: 20px; /* 左から(20px)移動 */
+  z-index: 1;
+}
+
+.newrecipe-box {
+  padding: 0.2em 0.5em;
+  margin: 2em 0;
+  background: #f0f8ff;
+  box-shadow: 0px 0px 0px 10px #f0f8ff;
+}
+
+.rankingrecipe-box {
+  padding: 0.2em 0.5em;
+  margin: 2em 0;
+  background: #f0ffff;
+  box-shadow: 0px 0px 0px 10px #f0ffff;
+}
+
+footer {
+  background-color: #dcdcdc;
+  height: 100px;
+}
+
+footer p {
+  margin-top: 30px;
+}
+
