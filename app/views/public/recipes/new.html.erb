@@ -8,71 +8,73 @@
   <%= form_with model: @recipe, local: true do |f| %>
   <%= render 'public/recipes/error_messages', recipe: f.object %>
   <div class="row justify-content-center mt-3">
-    <table class="recipe_info recipe_form">
-      <tbody>
-        <tr>
-          <th class="px-4">画像</th>
-          <td class="px-4"><%= f.file_field :image, accept: "image/*" %></td>
-        </tr>
-        <tr>
-          <th class="px-4 py-4">レシピ名</th>
-          <td class="px-4 py-4"><%= f.text_field :name %></td>
-        </tr>
-        <tr>
-          <th class="px-4 py-4">紹介文</th>
-          <td class="px-4 py-4"><%= f.text_area :introduction, size:'60 x 2', class:'p-2' %></td>
-        </tr>
-        <tr>
-          <th class="px-4 py-4">材料・分量</th>
-          <td class="px-4 py-4">
-            <div id="materials">
-            <%= f.fields_for :materials do |material| %>
-              <%= render "material_fields", f: material %>
-            <% end %>
-            </div>
-            <div>
-            <%= link_to_add_association "追加", f, :materials %>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th class="px-4 py-4">調理時間</th>
-          <td class="px-4 py-4"><%= f.text_field :cooktime %></td>
-        </tr>
-        <tr>
-          <th class="px-4 py-4">調理手順</th>
-          <td class="px-4 py-4">
-            <div id="materials">
-            <%= f.fields_for :procedures do |procedure| %>
-            <%= render "procedure_fields", f: procedure %>
-            <% end %>
-            </div>
-            <div>
-            <%= link_to_add_association "追加", f, :procedures %>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th class="px-4 py-4">カテゴリー</th>
-          <td class="px-4 py-4">
-            <div class="check_box">
-              <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category| %>
-                <div class='form-check'>
-               　 <%= category.label do %>
-                　  <%= category.check_box %>
-                　  <%= category.text %>
-                　<% end %>
-                </div>
+    <div class="col-lg-10 offset-lg-1 col-10 offset-1">
+      <table class="recipe_info recipe_form">
+        <tbody>
+          <tr>
+            <th class="px-4">画像</th>
+            <td class="px-4"><%= f.file_field :image, accept: "image/*" %></td>
+          </tr>
+          <tr>
+            <th class="px-4 py-4">レシピ名</th>
+            <td class="px-4 py-4"><%= f.text_field :name %></td>
+          </tr>
+          <tr>
+            <th class="px-4 py-4">紹介文</th>
+            <td class="px-4 py-4 col-12"><%= f.text_area :introduction, size:'60 x 2', class:'p-2' %></td>
+          </tr>
+          <tr>
+            <th class="px-4 py-4">材料・分量</th>
+            <td class="px-4 py-4">
+              <div id="materials">
+              <%= f.fields_for :materials do |material| %>
+                <%= render "material_fields", f: material %>
               <% end %>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+              </div>
+              <div>
+              <%= link_to_add_association "追加", f, :materials %>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th class="px-4 py-4">調理時間</th>
+            <td class="px-4 py-4"><%= f.text_field :cooktime %></td>
+          </tr>
+          <tr>
+            <th class="px-4 py-4">調理手順</th>
+            <td class="px-4 py-4">
+              <div id="materials">
+              <%= f.fields_for :procedures do |procedure| %>
+              <%= render "procedure_fields", f: procedure %>
+              <% end %>
+              </div>
+              <div>
+              <%= link_to_add_association "追加", f, :procedures %>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th class="px-4 py-4">カテゴリー</th>
+            <td class="px-4 py-4">
+              <div class="check_box">
+                <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category| %>
+                  <div class='form-check'>
+                 　 <%= category.label do %>
+                  　  <%= category.check_box %>
+                  　  <%= category.text %>
+                  　<% end %>
+                  </div>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <div class="row">
-    <div class="col text-center">
+    <div class="col text-center col-12">
       <%= f.submit 'レシピを公開', :name => 'submit_name', class: 'mr-5 btn btn-sm btn-warning text-white', "data-confirm" => "投稿しますか？" %>
       <%= f.submit '下書きに保存', :name => 'submit_name', class: 'mr-5 btn btn-sm btn-outline-secondary', "data-confirm" => "下書き保存しますか？" %>
     </div>
