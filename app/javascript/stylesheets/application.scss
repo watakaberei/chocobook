@@ -109,3 +109,58 @@ footer p {
   margin-top: 30px;
 }
 
+#table01 th,
+#table01 td {
+  padding: 24px 0;
+  border: none;
+}
+
+#table01 th {
+  width: 30%;
+}
+
+/* sp */
+@media only screen and (max-width: 425px) {
+  #table01 th,
+  #table01 td {
+    width: 100%;
+    display: block;
+  }
+
+  #table01 th {
+    width: 100%;
+  }
+
+  #table01 td {
+    padding-top: 0;
+  }
+}
+
+
+
+#table02 th,
+#table02 td {
+  padding: 24px 0;
+  border: none;
+}
+
+#table02 th {
+  width: 30%;
+}
+
+/* sp */
+@media only screen and (max-width: 425px) {
+  #table02 th,
+  #table02 td {
+    width: 100%;
+    display: block;
+  }
+
+  #table02 th {
+    width: 100%;
+  }
+
+  #table02 td {
+    padding-top: 0;
+  }
+}
