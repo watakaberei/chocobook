@@ -8,8 +8,8 @@
   <%= form_with model: @recipe, local: true do |f| %>
   <%= render 'public/recipes/error_messages', recipe: f.object %>
   <div class="row justify-content-center mt-3">
-    <div class="col-lg-10 offset-lg-1 col-10 offset-1">
-      <table class="recipe_info recipe_form">
+    <div class="col-md-10 offset-md-1">
+      <table id="table01">
         <tbody>
           <tr>
             <th class="px-4">画像</th>
@@ -21,7 +21,7 @@
           </tr>
           <tr>
             <th class="px-4 py-4">紹介文</th>
-            <td class="px-4 py-4 col-12"><%= f.text_area :introduction, size:'60 x 2', class:'p-2' %></td>
+            <td class="px-4 py-4"><%= f.text_area :introduction, size:'50 x 2' %></td>
           </tr>
           <tr>
             <th class="px-4 py-4">材料・分量</th>
@@ -73,7 +73,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row mt-5">
     <div class="col text-center col-12">
       <%= f.submit 'レシピを公開', :name => 'submit_name', class: 'mr-5 btn btn-sm btn-warning text-white', "data-confirm" => "投稿しますか？" %>
       <%= f.submit '下書きに保存', :name => 'submit_name', class: 'mr-5 btn btn-sm btn-outline-secondary', "data-confirm" => "下書き保存しますか？" %>

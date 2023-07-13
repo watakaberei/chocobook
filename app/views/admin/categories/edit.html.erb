@@ -8,19 +8,16 @@
   <div class="row">
     <div class="col-md-6">
       <table class="table">
-      　<%= form_with model: @category,url: admin_category_path, method: :patch do |f| %>
-        <tbody>
-          <tr>
-            <th>カテゴリ名</th>
-            <td><%= f.text_field :name %></td>
-            <td><%= f.submit '変更を保存', class:"btn btn-success" %></td>
-          </tr>
-        </tbody>
+        <%= form_with model: @category, url: admin_category_path, method: :patch do |f| %>
+          <tbody>
+            <tr>
+              <th>カテゴリ名</th>
+              <td><%= f.text_field :name %></td>
+              <td><%= f.submit '変更を保存', class: "btn btn-success" %></td>
+            </tr>
+          </tbody>
         <% end %>
       </table>
     </div>
   </div>
 </div>
-
-
-

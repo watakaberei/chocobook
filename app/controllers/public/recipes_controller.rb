@@ -35,6 +35,7 @@ class Public::RecipesController < ApplicationController
       if @recipe.save
       #if @recipe.materials.each(&:save)
         #byebug
+        flash[:notice] = "投稿が完了しました!"
         redirect_to recipe_path(@recipe), notice: "投稿が完了しました！"
       else
         render :new, alert: "登録できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
