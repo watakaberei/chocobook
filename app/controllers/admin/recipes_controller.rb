@@ -15,7 +15,7 @@ class Admin::RecipesController < ApplicationController
   def update
     recipe = Recipe.find(params[:id])
     recipe.update(recipe_params)
-    redirect_to admin_recipe_path(recipe.id)
+    redirect_to admin_recipe_path(@recipe.id)
   end
 
   def destroy
