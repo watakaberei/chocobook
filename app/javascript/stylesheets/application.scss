@@ -109,6 +109,8 @@ footer p {
   margin-top: 30px;
 }
 
+
+
 #table01 th,
 #table01 td {
   padding: 24px 0;
@@ -162,3 +164,16 @@ footer p {
     padding-top: 0;
   }
 }
+
+@media screen and (max-width: 425px) {
+	input[type="text"] {
+		width: 155px;
+		height: 40px;
+	}
+
+  textarea {
+    width: 320px;
+    height: 80px;
+  }
+}
+

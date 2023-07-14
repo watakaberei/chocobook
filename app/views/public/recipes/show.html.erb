@@ -11,11 +11,11 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-5">
+    <div class="col-lg-5 col-xs-12">
       <%= image_tag @recipe.image, size: "350x290" %>
     </div>
 
-    <div class="col-lg-7">
+    <div class="col-lg-7 col-xs-12">
       <div class="row">
         <p class="pr-5">
           <strong>材料・分量</strong>
@@ -44,7 +44,7 @@
   </div>
 
   <div class="row justify-content-center mt-1">
-    <div class="col-lg-12 col-12">
+    <div class="col-lg-12 mx-auto">
       <div class="procedure__ul">
         <ol>
           <% @recipe.procedures.each do |procedure| %>
