@@ -32,6 +32,14 @@ class Public::CustomersController < ApplicationController
     recipe_bookmarks = RecipeBookmark.where(customer_id: @customer.id).pluck(:recipe_id)
     @recipe_bookmark_recipes = Recipe.find(recipe_bookmarks)
   end
+  
+
+  def guest_sign_in
+    customer = Customer.guest
+    sign_in customer
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
+  
 
   private
 

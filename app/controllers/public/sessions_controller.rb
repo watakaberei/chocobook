@@ -24,6 +24,13 @@ class Public::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+
+  def guest_sign_in
+    customer = Customer.guest
+    sign_in customer
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
+
 protected
 # 退会しているかを判断するメソッド
   def customer_state
@@ -37,4 +44,8 @@ protected
       redirect_to new_customer_registration_path
     end
   end
+
+
 end
+
+
