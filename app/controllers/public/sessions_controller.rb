@@ -41,7 +41,8 @@ protected
     ## 【処理内容2】 取得したアカウントのパスワードと入力されたパスワードが一致してるかを判別
     if @customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted == true)
       ## 【処理内容3】
-      redirect_to new_customer_registration_path
+      flash[:danger] = 'お客様は退会済みです。申し訳ございませんが、別のメールアドレスをお使いください。'
+      redirect_to new_customer_session_path
     end
   end
 
