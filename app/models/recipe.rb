@@ -25,7 +25,7 @@ class Recipe < ApplicationRecord
     #validates :procedure
   end
 
-  with_options presence: true, if: :draft? do
+  with_options presence: true, if: :draft?, on: :create do
     validates :name
     validates :introduction
     validates :cooktime
