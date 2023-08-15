@@ -2,7 +2,7 @@ class Public::RecipesController < ApplicationController
   before_action :is_matching_login_customer, only: [:edit, :update]
 
   def index
-    @recipes = Recipe.where(is_draft: false).page(params[:page]).per(6)
+    @recipes = Recipe.where(is_draft: false).page(params[:page]).per(6).order(created_at: :desc)
     @categories = Category.all
   end
 
