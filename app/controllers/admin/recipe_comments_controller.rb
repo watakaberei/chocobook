@@ -1,7 +1,7 @@
 class Admin::RecipeCommentsController < ApplicationController
 
   def index
-    @recipe_comments = RecipeComment.all
+    @recipe_comments = RecipeComment.all.page(params[:page]).per(10)
   end
 
   def destroy

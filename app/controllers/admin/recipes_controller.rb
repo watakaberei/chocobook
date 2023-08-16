@@ -1,7 +1,7 @@
 class Admin::RecipesController < ApplicationController
 
   def index
-    @recipes = Recipe.where(is_draft: false)
+    @recipes = Recipe.where(is_draft: false).page(params[:page]).per(10)
   end
 
   def show
