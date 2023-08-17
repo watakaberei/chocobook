@@ -36,6 +36,8 @@ class Recipe < ApplicationRecord
     self.is_draft
   end
 
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
 
  def self.search(search_word) #①
   Recipe.where(["name LIKE(?) OR introduction LIKE(?)", #②
