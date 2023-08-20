@@ -35,7 +35,8 @@ class Recipe < ApplicationRecord
   def draft?
     self.is_draft
   end
-
+  
+  #ソート機能におけるスコープの
   scope :latest, -> {order(created_at: :desc)}
   scope :old, -> {order(created_at: :asc)}
 
@@ -43,7 +44,6 @@ class Recipe < ApplicationRecord
   Recipe.where(["name LIKE(?) OR introduction LIKE(?)", #②
                  "%#{search_word}%", "%#{search_word}%"])
  end
-
 
  def recipe_bookmarked_by?(customer)
    return false unless customer.present?

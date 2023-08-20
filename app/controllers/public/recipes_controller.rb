@@ -19,7 +19,7 @@ class Public::RecipesController < ApplicationController
 
   def search
     @recipes = Recipe.all
-    @recipes = Recipe.all.search(params[:keyword])
+    @recipes = Recipe.all.search(params[:keyword]).where(is_draft: false).page(params[:page]).per(6)
     @categories = Category.all
   end
 

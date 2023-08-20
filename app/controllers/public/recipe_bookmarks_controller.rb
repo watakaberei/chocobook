@@ -1,5 +1,5 @@
 class Public::RecipeBookmarksController < ApplicationController
-
+  
   def create
     @recipe = Recipe.find(params[:recipe_id])
     recipe_bookmark = current_customer.recipe_bookmarks.new(recipe_id: @recipe.id)

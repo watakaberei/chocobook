@@ -19,6 +19,9 @@
             <div class="col-lg-12 col-xs-12">
               <%= link_to recipe.name, recipe_path(recipe) %>
             </div>
+            <div class="text-center">
+              ♥<%= recipe.recipe_bookmarks.count %> いいね
+            </div>
           </div>
         <% end %>
       </div>
