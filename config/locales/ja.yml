@@ -20,7 +20,3 @@ ja:
       procedures:
         body: 調理手順
 
-ja:
-  time:
-    formats:
-      default: "%Y/%m/%d %H:%M:%S"

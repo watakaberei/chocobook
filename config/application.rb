@@ -29,7 +29,5 @@ module Pictweet
     # 日本語の言語設定。この一行を追加。
     config.i18n.default_locale = :ja
       # 省略
-    
-    config.time_zone = 'Asia/Tokyo'
   end
 end
