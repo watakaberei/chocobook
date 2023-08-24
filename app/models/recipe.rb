@@ -27,15 +27,15 @@ class Recipe < ApplicationRecord
 
   with_options presence: true, if: :draft?, on: :create do
     validates :name
-    validates :introduction
-    validates :cooktime
-    validates :image
+    #validates :introduction
+    #validates :cooktime
+    #validates :image
   end
 
   def draft?
     self.is_draft
   end
-  
+
   #ソート機能におけるスコープの
   scope :latest, -> {order(created_at: :desc)}
   scope :old, -> {order(created_at: :asc)}
