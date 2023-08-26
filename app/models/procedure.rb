@@ -1,7 +1,6 @@
 class Procedure < ApplicationRecord
-
+  attr_accessor :skip_validation
   belongs_to :recipe
-   with_options presence: true do
-   validates :body
-  end
+
+  validates :body, presence:true, unless: :skip_validation
 end
