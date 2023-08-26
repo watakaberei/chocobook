@@ -49,7 +49,7 @@ class Public::RecipesController < ApplicationController
 
   #下書きボタンを押した場合
     else
-      if @recipe.save
+      if @recipe.save_without_validation
         @recipe.update(is_draft: true)
         redirect_to draft_path, notice: "レシピを下書き保存しました！"
       else
