@@ -15,25 +15,35 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :procedures, allow_destroy: true
   accepts_nested_attributes_for :materials, allow_destroy: true
 
-  #バリデーションの設定
-  with_options presence: true, unless: :draft? do
-    validates :name
-    validates :introduction
-    validates :cooktime
-    validates :image
-    #validates :material
-    #validates :procedure
-  end
+  validates :name, presence: true
+  validates :introduction, presence: true, unless: :is_draft?
+  validates :cooktime, presence: true, unless: :is_draft?
+  validates :image, presence: true, unless: :is_draft?
+  # #バリデーションの設定
+  # with_options presence: true, unless: :draft? do
+  #   validates :name
+  #   validates :introduction
+  #   validates :cooktime
+  #   validates :image
+  #   #validates :material
+  #   #validates :procedure
+  # end
 
-  with_options presence: true, if: :draft?, on: :create do
-    validates :name
-    #validates :introduction
-    #validates :cooktime
-    #validates :image
-  end
+  # with_options presence: true, if: :draft?, on: :create do
+  #   validates :name
+  #   #validates :introduction
+  #   #validates :cooktime
+  #   #validates :image
+  # end
 
   def draft?
     self.is_draft
+  end
+
+  def save_without_validation
+    materials.each { |material| material.skip_validation = true }
+    procedures.each { |procedure| procedure.skip_validation = true }
+    save
   end
 
   #ソート機能におけるスコープの
