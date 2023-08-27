@@ -2,13 +2,17 @@ class Public::RecipesController < ApplicationController
   before_action :is_matching_login_customer, only: [:edit, :update]
 
   def index
-    if params[:latest]
-      @recipes = Recipe.latest.where(is_draft: false).page(params[:page]).per(6)
-    elsif params[:old]
-      @recipes = Recipe.old.where(is_draft: false).page(params[:page]).per(6)
-    else
-      @recipes = Recipe.where(is_draft: false).page(params[:page]).per(6)
-    end
+    @recipes = if params[:keyword] == 'latest'
+                 Recipe.latest.where(is_draft: false)
+               elsif params[:keyword] == 'old'
+                 Recipe.old.where(is_draft: false)
+               elsif params[:keyword] == 'recipe_bookmarks'
+                 Recipe.recipe_bookmarked.where(is_draft: false)
+               elsif params[:keyword] == 'recipe_comments'
+                 Recipe.recipe_commented.where(is_draft: false)
+               else
+                 Recipe.where(is_draft: false)
+               end.page(params[:page]).per(6)
     @categories = Category.all
   end
 
