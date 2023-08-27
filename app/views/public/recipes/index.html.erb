@@ -15,8 +15,8 @@
       <div class="row">
         <div class="col-lg-6">
           <%= form_with model: @recipe, url: recipes_path, method: :get, local: true do |form| %>
-          <%= form.select :keyword, [ ['新しい順', 'latest'],
-                            ['古い順', 'old'],
+          <%= form.select :keyword, [ ['古い順', 'old'],
+                            ['新しい順', 'latest'],
                             ['いいね順', 'recipe_bookmarks'],
                             ['コメント順', 'recipe_comments'],
                           ] %>
