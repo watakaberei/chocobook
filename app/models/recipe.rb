@@ -11,6 +11,8 @@ class Recipe < ApplicationRecord
   has_many :procedures, dependent: :destroy
   has_many :materials, dependent: :destroy
 
+  has_many :recipe_bookmarked_customers, through: :recipe_bookmarks, source: :customer
+
   #関連付けしたモデルを一緒にデータ保存できるようにする
   accepts_nested_attributes_for :procedures, allow_destroy: true
   accepts_nested_attributes_for :materials, allow_destroy: true
@@ -46,9 +48,20 @@ class Recipe < ApplicationRecord
     save
   end
 
-  #ソート機能におけるスコープの
+  #ソート機能におけるスコープの実装
   scope :latest, -> {order(created_at: :desc)}
   scope :old, -> {order(created_at: :asc)}
+  scope :recipe_bookmarked, -> {
+    joins(:recipe_bookmarks)
+      .group('recipes.id')
+      .order('COUNT(recipe_bookmarks.id) DESC')
+  }
+  
+  scope :recipe_commented, -> {
+    joins(:recipe_comments)
+      .group('recipes.id')
+      .order('COUNT(recipe_comments.id) DESC')
+  }
 
  def self.search(search_word) #①
   Recipe.where(["name LIKE(?) OR introduction LIKE(?)", #②
