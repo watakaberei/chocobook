@@ -63,7 +63,7 @@ class Public::RecipesController < ApplicationController
   end
 
   def draft
-    @recipes = Recipe.where(is_draft: true)
+    @recipes = current_customer.recipes.where(is_draft: true)
   end
 
   def history
