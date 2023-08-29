@@ -49,6 +49,10 @@
               <div class="col-lg-12 col-xs-12">
                 <%= link_to recipe.name, recipe_path(recipe) %>
               </div>
+              <div class="col-sm-12">
+                ♥<%= recipe.recipe_bookmarks.count %>
+                :コメント<%= recipe.recipe_comments.count %>件
+              </div>
             </div>
           <% end %>
         </div>
@@ -77,7 +81,8 @@
                 <%= link_to recipe.name, recipe_path(recipe) %>
               </div>
               <div class="col-sm-12">
-                ♥<%= recipe.recipe_bookmarks.count %> いいね
+                ♥<%= recipe.recipe_bookmarks.count %>
+                :コメント<%= recipe.recipe_comments.count %>件
               </div>
             </div>
           <% end %>
