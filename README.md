@@ -1,5 +1,7 @@
 # Chocobook
 
+<img width="1020" src="chocobook.png">
+
 ## サイト概要
 チョコレートスイーツのレシピサイト
 
@@ -48,10 +50,6 @@ https://docs.google.com/spreadsheets/d/19YhdSgJyfXNRdhzw2skeaBo5lZrJRiKnih9b0EeQ
 ### ログイン機能
 gem 'devise'
 
-### レイアウト
-- gem 'bootsnap', '>= 1.4.4'
-- gem 'jquery-rails'
-
 ### 動的フォーム実装機能
 - gem 'cocoon'
 - gem 'jquery-rails'
@@ -62,10 +60,13 @@ gem 'kaminari','~> 1.2.1'
 ### バリデーション日本語化
 gem 'rails-i18n'
 
+### デプロイ
+gem mysql2
+
 ## 開発環境
 - OS：Linux(CentOS)
-- 言語：HTML,CSS,JavaScript,Ruby,SQL
-- フレームワーク：Ruby on Rails
+- 言語：HTML/CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails,Bootstrap
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
