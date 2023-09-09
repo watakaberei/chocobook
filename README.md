@@ -1,7 +1,5 @@
 # Chocobook
 
-<img width="1020" src="chocobook.png">
-
 ## サイト概要
 チョコレートスイーツのレシピサイト
 
