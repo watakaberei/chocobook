@@ -11,7 +11,7 @@ ja:
         password: パスワード
       recipe:
         cooktime: 調理時間
-        introduction: 説明文
+        introduction: 説明文 
         name: レシピ名
         image: 画像
       materials:
